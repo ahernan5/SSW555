@@ -1,0 +1,251 @@
+0 NOTE Alyssa Hernandez 4 generations of relatives 
+0 HEAD
+1 SOUR Family Echo
+2 WWW http://www.familyecho.com/
+1 FILE My Family
+1 DATE 7 SEP 2022
+1 DEST ANSTFILE
+1 GEDC
+2 VERS 5.5.1
+2 FORM LINEAGE-LINKED
+1 SUBM @I1@
+2 NAME alllyy152@gmail.com
+1 SUBN
+1 CHAR UTF-8
+0 @I1@ INDI
+1 NAME Alyssa /Hernandez/
+2 GIVN Alyssa
+2 SURN Hernandez
+2 _MARNM Hernandez
+1 SEX F
+1 BIRT
+2 DATE 26 MAY 2001
+1 FAMC @F1@
+0 @I2@ INDI
+1 NAME Ray /Hernandez/
+2 GIVN Ray
+2 SURN Hernandez
+2 _MARNM Hernandez
+1 SEX M
+1 BIRT
+2 DATE 13 JAN 1973
+1 FAMS @F1@
+1 FAMC @F2@
+0 @I3@ INDI
+1 NAME Sally /Perez/
+2 GIVN Sally
+2 SURN Perez
+2 _MARNM Hernandez
+1 SEX F
+1 BIRT
+2 DATE 12 MAY 1975
+1 FAMS @F1@
+1 FAMC @F3@
+0 @I4@ INDI
+1 NAME Jose /Perez/
+2 GIVN Jose
+2 SURN Perez
+2 _MARNM Perez
+1 SEX M
+1 BIRT
+2 DATE 28 MAY 1929
+1 DEAT Y
+2 DATE 22 MAR 2012
+1 FAMS @F3@
+0 @I5@ INDI
+1 NAME Maria /Padilla/
+2 GIVN Maria
+2 SURN Padilla
+2 _MARNM Perez
+1 SEX F
+1 BIRT
+2 DATE 24 APR 1938
+1 FAMS @F3@
+1 FAMC @F4@
+0 @I6@ INDI
+1 NAME Antonio /Perez/
+2 GIVN Antonio
+2 SURN Perez
+2 _MARNM Perez
+1 SEX M
+1 BIRT
+2 DATE 3 DEC 1964
+1 FAMS @F5@
+1 FAMC @F3@
+0 @I7@ INDI
+1 NAME Kaitlyn /Hernandez/
+2 GIVN Kaitlyn
+2 SURN Hernandez
+2 _MARNM Hernandez
+1 SEX F
+1 BIRT
+2 DATE 3 MAR 2004
+1 FAMC @F1@
+0 @I8@ INDI
+1 NAME Britney /Hernandez/
+2 GIVN Britney
+2 SURN Hernandez
+2 _MARNM Hernandez
+1 SEX F
+1 BIRT
+2 DATE 20 JUN 2009
+1 FAMC @F1@
+0 @I9@ INDI
+1 NAME Reynaldo /Hernandez/
+2 GIVN Reynaldo
+2 SURN Hernandez
+2 _MARNM Hernandez
+1 SEX M
+1 BIRT
+2 DATE 15 JUN 1942
+1 FAMS @F2@
+1 FAMS @F6@
+0 @I10@ INDI
+1 NAME Elva /Ortega/
+2 GIVN Elva
+2 SURN Ortega
+2 _MARNM Hernandez
+1 SEX F
+1 BIRT
+2 DATE 17 JUL 1943
+1 DEAT Y
+2 DATE 4 JAN 2014
+1 FAMS @F2@
+0 @I11@ INDI
+1 NAME Vanessa /Garcia/
+2 GIVN Vanessa
+2 SURN Garcia
+2 _MARNM Hernandez
+1 SEX F
+1 BIRT
+2 DATE 16 MAY 1945
+1 FAMS @F6@
+1 FAMS @F7@
+0 @I12@ INDI
+1 NAME Maritza /Hernandez/
+2 GIVN Maritza
+2 SURN Hernandez
+2 _MARNM Hernandez
+1 SEX F
+1 BIRT
+2 DATE 16 AUG 1981
+1 FAMC @F6@
+0 @I13@ INDI
+1 NAME Juan /Hernandez/
+2 GIVN Juan
+2 SURN Hernandez
+2 _MARNM Hernandez
+1 SEX M
+1 BIRT
+2 DATE 21 JUN 1985
+1 FAMC @F6@
+0 @I14@ INDI
+1 NAME Victor /Suarez/
+2 GIVN Victor
+2 SURN Suarez
+2 _MARNM Suarez
+1 SEX M
+1 BIRT
+2 DATE 6 DEC 1940
+1 DEAT Y
+2 DATE 30 OCT 1974
+1 FAMS @F7@
+0 @I15@ INDI
+1 NAME Ricardo /Padilla/
+2 GIVN Ricardo
+2 SURN Padilla
+2 _MARNM Padilla
+1 SEX M
+1 BIRT
+2 DATE 28 APR 1902
+1 FAMS @F4@
+0 @I16@ INDI
+1 NAME Juana /Arencieia/
+2 GIVN Juana
+2 SURN Arencieia
+2 _MARNM Padilla
+1 SEX F
+1 BIRT
+2 DATE 13 JAN 1905
+1 FAMS @F4@
+0 @I17@ INDI
+1 NAME Nancy /Gutierrez/
+2 GIVN Nancy
+2 SURN Gutierrez
+2 _MARNM Perez
+1 SEX F
+1 BIRT
+2 DATE 29 NOV 1964
+1 FAMS @F5@
+0 @I18@ INDI
+1 NAME Michael /Perez/
+2 GIVN Michael
+2 SURN Perez
+2 _MARNM Perez
+1 SEX M
+1 BIRT
+2 DATE 13 SEP 1999
+1 FAMC @F5@
+0 @F1@ FAM
+1 HUSB @I2@
+1 WIFE @I3@
+1 CHIL @I1@
+1 CHIL @I7@
+1 CHIL @I8@
+1 MARR
+2 DATE 3 AUG 1997
+2 PLAC Woodridge, NJ
+1 _CURRENT Y
+1 _PRIMARY Y
+0 @F2@ FAM
+1 HUSB @I9@
+1 WIFE @I10@
+1 CHIL @I2@
+1 MARR
+2 DATE 8 JAN 1972
+1 DIV
+2 DATE 13 SEP 1976
+1 _CURRENT N
+1 _PRIMARY N
+0 @F6@ FAM
+1 HUSB @I9@
+1 WIFE @I11@
+1 CHIL @I12@
+1 CHIL @I13@
+1 MARR
+2 DATE 29 MAY 1978
+1 _CURRENT Y
+1 _PRIMARY Y
+0 @F3@ FAM
+1 HUSB @I4@
+1 WIFE @I5@
+1 CHIL @I3@
+1 CHIL @I6@
+1 MARR
+2 DATE 11 FEB 1963
+1 _CURRENT Y
+1 _PRIMARY Y
+0 @F4@ FAM
+1 HUSB @I15@
+1 WIFE @I16@
+1 CHIL @I5@
+1 MARR
+2 DATE 19 JUL 1923
+1 _CURRENT Y
+1 _PRIMARY Y
+0 @F5@ FAM
+1 HUSB @I6@
+1 WIFE @I17@
+1 CHIL @I18@
+1 _CURRENT N
+1 _PRIMARY N
+0 @F7@ FAM
+1 HUSB @I14@
+1 WIFE @I11@
+1 MARR
+2 DATE 2 NOV 1965
+1 EVEN
+2 TYPE Ending
+1 _CURRENT N
+1 _PRIMARY N
+0 TRLR
