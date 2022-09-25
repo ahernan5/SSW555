@@ -1,6 +1,6 @@
 #Alyssa Hernandez
 #I pledge my honor that I have abided by the Stevens Honor System. -AH 
-
+#NOTE: GitHub repository name: SSW555
 
 #opening the GEDCOM file for reading 
 GedcomFile = open('M1B6.txt', 'r')
