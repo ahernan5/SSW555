@@ -22,6 +22,8 @@ husbName = ''
 wife = ''
 wifeName = ''
 
+tempFam = []
+
 for inputLine in GedcomFile:
     #level is the first number in the input line 
     level = int(inputLine[:1])
@@ -81,14 +83,18 @@ for inputLine in GedcomFile:
         famStorage[famLineNum - 1].append(husb)
 
     #get husb name
+    if len(famStorage[famLineNum - 1]) == 4:
+        famStorage[famLineNum - 1].append('')
 
     if level == 1 and 'WIFE' in lineTag:
         wife = arguments[0]
 
-    if len(famStorage[famLineNum - 1]) == 4:
+    if len(famStorage[famLineNum - 1]) == 5:
         famStorage[famLineNum - 1].append(wife)
 
     #get wife name
+    if len(famStorage[famLineNum - 1]) == 6:
+        famStorage[famLineNum - 1].append('')
 
 
     #indiviual storage
@@ -98,6 +104,9 @@ for inputLine in GedcomFile:
 
     if level == 1 and 'NAME' in lineTag:
         indiStorage[lineNum - 1].append(arguments[0]+" "+arguments[1])
+
+    if level == 1 and 'SEX' in lineTag:
+        indiStorage[lineNum - 1].append(arguments[0])
 
     if level == 1 and 'BIRT' in lineTag:
         birth = True
@@ -114,18 +123,70 @@ for inputLine in GedcomFile:
 
     if alive == False:
         indiStorage[lineNum - 1].pop()
+        indiStorage[lineNum - 1].pop()
         indiStorage[lineNum - 1].append('FALSE')
         indiStorage[lineNum - 1].append(arguments[2]+"-"+arguments[1]+"-"+arguments[0])
         alive = True
 
-    if len(indiStorage[lineNum - 1]) == 4:
+    if len(indiStorage[lineNum - 1]) == 5:
         indiStorage[lineNum - 1].append('TRUE')
         indiStorage[lineNum - 1].append('NA')
 
+
+
+    #save family id, wife, husband and child ids
+    if level == 0 and 'FAM' in arguments:
+        tempFam.append([lineTag])
+        continue
+
+    if level == 1 and 'HUSB' in lineTag:
+        tempFam[famLineNum - 2].append(arguments[0])
+
+    if level == 1 and 'WIFE' in lineTag:
+        tempFam[famLineNum - 2].append(arguments[0])
+
     if level == 1 and 'CHIL' in lineTag:
-        indiStorage[lineNum - 1].append(arguments)
+        tempFam[famLineNum - 2].append(arguments[0])
     
+
+for x in indiStorage:
+    for y in tempFam:
+        if x[0] in y[2:]:
+            if len(x) == 7:
+                x.append(y[0])
+            else:
+                x[7] += ", " + y[0]
+        if x[0] in y[1:3]:
+            x.append(y[0])
+
+    if len(x) == 7:
+        x.append('NA')
+
+    if len(x) == 8:
+        x.append('NA')
+    
+for a in famStorage:
+    for b in indiStorage:
+        if len(a) > 4 and a[3] == b[0]:
+            a[4] = b[1]
+        if len(a) > 4 and a[5] == b[0]:
+            a[6] = b[1]
+
+# print(tempFam)
+
+for c in famStorage:
+    for d in tempFam:
+        if len(d) > 3 and c[0] in d[0]:
+            c.append(d[3:])
+
+    if len(c) == 7:
+        c.append('NA')
+        
+
     # print(lineNum)
-print(indiStorage)
     # print(famLineNum)
+print(indiStorage)
+print('\n')
 print(famStorage)
+# print('\n')
+# print(tempFam)
