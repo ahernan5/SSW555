@@ -10,9 +10,17 @@ GedcomFile = open('C:/Users/user/Documents/SSW555Group/SSW555/M1B6.txt', 'r')
 supportedTags = ["INDI", "NAME", "SEX", "BIRT", "DEAT", "FAMC", "FAMS", "FAM", "MARR", "HUSB", "WIFE", "CHIL", "DIV", "DATE", "HEAD", "TRLR", "NOTE"]
 
 lineNum = 1
+famLineNum = 1
 indiStorage = [['ID','Name','Gender','Birthday','Age','Alive','Death','Child','Spouse']]
+famStorage = [['ID','Married','Divorced','Husband ID','Husband Name','Wife ID','Wife Name','Children']]
 birth = False
 alive = True
+marr = False
+divorced = False
+husb = ''
+husbName = ''
+wife = ''
+wifeName = ''
 
 for inputLine in GedcomFile:
     #level is the first number in the input line 
@@ -40,7 +48,50 @@ for inputLine in GedcomFile:
     #prints level, tag, valid: Y or N, and arguments 
     print("<--", level, "|", lineTag, "|", valid, "|", " ".join(arguments), "\n")
 
+    #family storage
+    if level == 0 and 'FAM' in arguments:
+        famStorage.append([lineTag])
+        famLineNum += 1
 
+    if level == 1 and 'MARR' in lineTag:
+        marr = True
+        continue
+
+    if marr == True:
+        famStorage[famLineNum - 1].append(arguments[2]+"-"+arguments[1]+"-"+arguments[0])
+        marr = False
+    
+    if level == 1 and 'DIV' in lineTag:
+        divorced = True
+        continue
+    
+    if divorced == True:
+        famStorage[famLineNum - 1].pop()
+        famStorage[famLineNum - 1].pop()
+        famStorage[famLineNum - 1].append(arguments[2]+"-"+arguments[1]+"-"+arguments[0])
+        divorced = False
+
+    if len(famStorage[famLineNum - 1]) == 2:
+        famStorage[famLineNum - 1].append('NA')
+    
+    if level == 1 and 'HUSB' in lineTag:
+        husb = arguments[0]
+
+    if len(famStorage[famLineNum - 1]) == 3:
+        famStorage[famLineNum - 1].append(husb)
+
+    #get husb name
+
+    if level == 1 and 'WIFE' in lineTag:
+        wife = arguments[0]
+
+    if len(famStorage[famLineNum - 1]) == 4:
+        famStorage[famLineNum - 1].append(wife)
+
+    #get wife name
+
+
+    #indiviual storage
     if level == 0 and 'INDI' in arguments:
         indiStorage.append([lineTag])
         lineNum += 1
@@ -71,6 +122,10 @@ for inputLine in GedcomFile:
         indiStorage[lineNum - 1].append('TRUE')
         indiStorage[lineNum - 1].append('NA')
 
+    if level == 1 and 'CHIL' in lineTag:
+        indiStorage[lineNum - 1].append(arguments)
     
     # print(lineNum)
-    print(indiStorage)
+print(indiStorage)
+    # print(famLineNum)
+print(famStorage)
