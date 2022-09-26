@@ -1,18 +1,25 @@
 from datetime import date
+import os
+import numpy as np
+
 #NOTE: GitHub repository name: SSW555
 
 todaysDate = date.today()
 
-#opening the GEDCOM file for reading 
-GedcomFile = open('C:/Users/user/Documents/SSW555Group/SSW555/M1B6.txt', 'r')
+#opening the GEDCOM file for reading
+GedcomFile = open(
+    os.getcwd() + '/M1B6.txt', 'r')
 
-#tags supported for our project 
-supportedTags = ["INDI", "NAME", "SEX", "BIRT", "DEAT", "FAMC", "FAMS", "FAM", "MARR", "HUSB", "WIFE", "CHIL", "DIV", "DATE", "HEAD", "TRLR", "NOTE"]
+#tags supported for our project
+supportedTags = ["INDI", "NAME", "SEX", "BIRT", "DEAT", "FAMC", "FAMS", "FAM",
+                 "MARR", "HUSB", "WIFE", "CHIL", "DIV", "DATE", "HEAD", "TRLR", "NOTE"]
 
 lineNum = 1
 famLineNum = 1
-indiStorage = [['ID','Name','Gender','Birthday','Age','Alive','Death','Child','Spouse']]
-famStorage = [['ID','Married','Divorced','Husband ID','Husband Name','Wife ID','Wife Name','Children']]
+indiStorage = [['ID', 'Name', 'Gender', 'Birthday',
+                'Age', 'Alive', 'Death', 'Child', 'Spouse']]
+famStorage = [['ID', 'Married', 'Divorced', 'Husband ID',
+               'Husband Name', 'Wife ID', 'Wife Name', 'Children']]
 birth = False
 alive = True
 marr = False
@@ -25,30 +32,31 @@ wifeName = ''
 tempFam = []
 
 for inputLine in GedcomFile:
-    #level is the first number in the input line 
+    #level is the first number in the input line
     level = int(inputLine[:1])
-        
-    #splits the string into a list and strips the tag from the list 
+
+    #splits the string into a list and strips the tag from the list
     lineWords = inputLine.split()
     lineTag = lineWords[1].strip()
-    
-    #arguments are the following words after level and tag 
+
+    #arguments are the following words after level and tag
     arguments = lineWords[2:]
-    
-    #checks if tags are valid making sure "1 DATE" and "2 NAME" are not supported 
+
+    #checks if tags are valid making sure "1 DATE" and "2 NAME" are not supported
     if level == 1 and lineTag == "DATE":
         valid = "N"
     elif level == 2 and lineTag == "NAME":
         valid = "N"
     elif lineTag in supportedTags:
         valid = "Y"
-    else: 
+    else:
         valid = "N"
-        
-    #prints input line     
-    print("-->", inputLine.rstrip("\n")) 
-    #prints level, tag, valid: Y or N, and arguments 
-    print("<--", level, "|", lineTag, "|", valid, "|", " ".join(arguments), "\n")
+
+    #prints input line
+    print("-->", inputLine.rstrip("\n"))
+    #prints level, tag, valid: Y or N, and arguments
+    print("<--", level, "|", lineTag, "|",
+          valid, "|", " ".join(arguments), "\n")
 
     #family storage
     if level == 0 and 'FAM' in arguments:
@@ -60,22 +68,24 @@ for inputLine in GedcomFile:
         continue
 
     if marr == True:
-        famStorage[famLineNum - 1].append(arguments[2]+"-"+arguments[1]+"-"+arguments[0])
+        famStorage[famLineNum
+                   - 1].append(arguments[2]+"-"+arguments[1]+"-"+arguments[0])
         marr = False
-    
+
     if level == 1 and 'DIV' in lineTag:
         divorced = True
         continue
-    
+
     if divorced == True:
         famStorage[famLineNum - 1].pop()
         famStorage[famLineNum - 1].pop()
-        famStorage[famLineNum - 1].append(arguments[2]+"-"+arguments[1]+"-"+arguments[0])
+        famStorage[famLineNum
+                   - 1].append(arguments[2]+"-"+arguments[1]+"-"+arguments[0])
         divorced = False
 
     if len(famStorage[famLineNum - 1]) == 2:
         famStorage[famLineNum - 1].append('NA')
-    
+
     if level == 1 and 'HUSB' in lineTag:
         husb = arguments[0]
 
@@ -96,7 +106,6 @@ for inputLine in GedcomFile:
     if len(famStorage[famLineNum - 1]) == 6:
         famStorage[famLineNum - 1].append('')
 
-
     #indiviual storage
     if level == 0 and 'INDI' in arguments:
         indiStorage.append([lineTag])
@@ -113,7 +122,8 @@ for inputLine in GedcomFile:
         continue
 
     if birth == True:
-        indiStorage[lineNum - 1].append(arguments[2]+"-"+arguments[1]+"-"+arguments[0])
+        indiStorage[lineNum
+                    - 1].append(arguments[2]+"-"+arguments[1]+"-"+arguments[0])
         indiStorage[lineNum - 1].append(todaysDate.year - int(arguments[2]))
         birth = False
 
@@ -125,14 +135,13 @@ for inputLine in GedcomFile:
         indiStorage[lineNum - 1].pop()
         indiStorage[lineNum - 1].pop()
         indiStorage[lineNum - 1].append('FALSE')
-        indiStorage[lineNum - 1].append(arguments[2]+"-"+arguments[1]+"-"+arguments[0])
+        indiStorage[lineNum
+                    - 1].append(arguments[2]+"-"+arguments[1]+"-"+arguments[0])
         alive = True
 
     if len(indiStorage[lineNum - 1]) == 5:
         indiStorage[lineNum - 1].append('TRUE')
         indiStorage[lineNum - 1].append('NA')
-
-
 
     #save family id, wife, husband and child ids
     if level == 0 and 'FAM' in arguments:
@@ -147,7 +156,7 @@ for inputLine in GedcomFile:
 
     if level == 1 and 'CHIL' in lineTag:
         tempFam[famLineNum - 2].append(arguments[0])
-    
+
 
 for x in indiStorage:
     for y in tempFam:
@@ -164,7 +173,7 @@ for x in indiStorage:
 
     if len(x) == 8:
         x.append('NA')
-    
+
 for a in famStorage:
     for b in indiStorage:
         if len(a) > 4 and a[3] == b[0]:
@@ -181,12 +190,19 @@ for c in famStorage:
 
     if len(c) == 7:
         c.append('NA')
-        
 
     # print(lineNum)
     # print(famLineNum)
-print(indiStorage)
-print('\n')
-print(famStorage)
+
+# Temporarily format tables
+print(np.array(indiStorage))
+print(np.array(famStorage))
+
+
+# Printing without formatting
+# print(indiStorage)
+# print('\n')
+# print(famStorage)
+
 # print('\n')
 # print(tempFam)
