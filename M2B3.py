@@ -1,6 +1,10 @@
 from datetime import date
+import datetime
 import os
 import numpy as np
+
+# Custom Functions
+from functions import formatDate, toMonths
 
 #NOTE: GitHub repository name: SSW555
 
@@ -16,10 +20,14 @@ supportedTags = ["INDI", "NAME", "SEX", "BIRT", "DEAT", "FAMC", "FAMS", "FAM",
 
 lineNum = 1
 famLineNum = 1
+errorLineNum = 1
+
 indiStorage = [['ID', 'Name', 'Gender', 'Birthday',
                 'Age', 'Alive', 'Death', 'Child', 'Spouse']]
 famStorage = [['ID', 'Married', 'Divorced', 'Husband ID',
                'Husband Name', 'Wife ID', 'Wife Name', 'Children']]
+errors = [['Type', 'ID', 'Story #', 'Reason']]
+
 birth = False
 alive = True
 marr = False
@@ -125,6 +133,14 @@ for inputLine in GedcomFile:
         indiStorage[lineNum
                     - 1].append(arguments[2]+"-"+arguments[1]+"-"+arguments[0])
         indiStorage[lineNum - 1].append(todaysDate.year - int(arguments[2]))
+        
+
+        # User Story - US01
+        numbersDate = arguments[2]+"-"+toMonths(arguments[1])+"-"+arguments[0]
+        formattedBirthday = formatDate(numbersDate)
+        if datetime.datetime.today() < formattedBirthday:
+            errors.append(["INDI", indiStorage[lineNum - 1][0], "US01", "Birthday cannot be after current date"])
+
         birth = False
 
     if level == 1 and 'DEAT' in lineTag:
@@ -197,6 +213,7 @@ for c in famStorage:
 # Temporarily format tables
 print(np.array(indiStorage))
 print(np.array(famStorage))
+print(np.array(errors))
 
 
 # Printing without formatting
