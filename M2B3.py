@@ -42,8 +42,9 @@ tempFam = []
 for inputLine in GedcomFile:
 
     # Storage for some errors
-    deathDate = "";
+    deathDate = ""
     divorceDate = ""
+    birthday = ""
 
     #level is the first number in the input line
     level = int(inputLine[:1])
@@ -138,7 +139,7 @@ for inputLine in GedcomFile:
 
     if birth == True:
         indiStorage[lineNum
-                    - 1].append(arguments[2]+"-"+arguments[1]+"-"+arguments[0])
+                    - 1].append(arguments[2]+"-"+toMonths(arguments[1])+"-"+arguments[0])
         indiStorage[lineNum - 1].append(todaysDate.year - int(arguments[2]))
         
 
@@ -160,7 +161,12 @@ for inputLine in GedcomFile:
         indiStorage[lineNum - 1].append('FALSE')
         indiStorage[lineNum
                     - 1].append(arguments[2]+"-"+arguments[1]+"-"+arguments[0])
-        deathDate = arguments[2]+"-"+arguments[1]+"-"+arguments[0]
+        deathDate = arguments[2]+"-"+toMonths(arguments[1])+"-"+arguments[0]
+
+        # User Story - US03
+        birthday = indiStorage[lineNum - 1][3]
+        if formatDate(birthday) > formatDate(deathDate):
+            errors.append(["INDI", indiStorage[lineNum - 1][0], "US03", "Death before birth"])
 
         # User Story - US06
         if divorceDate != '':
