@@ -43,7 +43,6 @@ for inputLine in GedcomFile:
 
     # Storage for some errors
     deathDate = ""
-    divorceDate = ""
     birthday = ""
 
     #level is the first number in the input line
@@ -94,8 +93,7 @@ for inputLine in GedcomFile:
         famStorage[famLineNum - 1].pop()
         famStorage[famLineNum - 1].pop()
         famStorage[famLineNum
-                   - 1].append(arguments[2]+"-"+arguments[1]+"-"+arguments[0])
-        divorceDate = arguments[2]+"-"+toMonths(arguments[1])+"-"+arguments[0]
+                   - 1].append(arguments[2]+"-"+toMonths(arguments[1])+"-"+arguments[0])
 
         divorced = False
 
@@ -168,14 +166,15 @@ for inputLine in GedcomFile:
         if formatDate(birthday) > formatDate(deathDate):
             errors.append(["INDI", indiStorage[lineNum - 1][0], "US03", "Death before birth"])
 
+        divorced = famStorage[famLineNum - 1][2]
+
         # User Story - US06
-        if divorceDate != '':
-            numbersDeathDate = arguments[2]+"-"+toMonths(arguments[1])+"-"+arguments[0]
-            numbersDivorcedDate = divorceDate
-            formattedDivorceDate = formatDate(numbersDivorcedDate)
-            formattedDeathDate = formatDate(numbersDeathDate)
-            if formattedDeathDate < formattedDivorceDate:
-                errors.append(["FAMILY", famStorage[famLineNum - 1][0], "US06", "Divorce date is after death"])
+        # if divorced:
+        #     print(divorced)
+        #     numbersDeathDate = arguments[2]+"-"+toMonths(arguments[1])+"-"+arguments[0]
+        #     numbersDivorceDate = divorced
+        #     if formatDate(numbersDeathDate) > formatDate(numbersDivorceDate):
+        #         errors.append(["FAMILY", indiStorage[lineNum - 1][0], "US06", "Divorce date after death date"])
         alive = True
 
     if len(indiStorage[lineNum - 1]) == 5:
