@@ -89,11 +89,11 @@ for inputLine in GedcomFile:
         divorced = True
         continue
 
+
     if divorced == True:
         famStorage[famLineNum - 1].pop()
         famStorage[famLineNum - 1].pop()
-        famStorage[famLineNum
-                   - 1].append(arguments[2]+"-"+toMonths(arguments[1])+"-"+arguments[0])
+        famStorage[famLineNum- 1][2] = (arguments[2]+"-"+toMonths(arguments[1])+"-"+arguments[0])
 
         divorced = False
 
@@ -168,18 +168,18 @@ for inputLine in GedcomFile:
 
         alive = True
     
-    print(famStorage)
+    # print(famStorage)
     if len(famStorage[famLineNum-1]) > 2 and 'Married' not in famStorage[famLineNum - 1][1]:
 
-        divorced = famStorage[famLineNum - 1][1]
+        divorced = famStorage[famLineNum - 1][2]
     
 
     # User Story - US06
-    if divorced:
-        print(divorced)
+    if divorced and 'NA' not in divorced:
+        # print(divorced)
         if len(arguments) > 2:
             numbersDeathDate = arguments[2]+"-"+toMonths(arguments[1])+"-"+arguments[0]
-        numbersDivorceDate = divorced[:5] + toMonths(divorced[5:8]) + divorced[8:]
+        numbersDivorceDate = divorced
         if formatDate(numbersDeathDate) > formatDate(numbersDivorceDate):
             errors.append(["FAMILY", indiStorage[lineNum - 1][0], "US06", "Divorce date after death date"])
         
