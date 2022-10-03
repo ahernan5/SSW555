@@ -12,7 +12,7 @@ todaysDate = date.today()
 
 #opening the GEDCOM file for reading
 GedcomFile = open(
-    os.getcwd() + '/M1B6.txt', 'r')
+    os.getcwd() + '/M1B6.ged', 'r')
 
 #tags supported for our project
 supportedTags = ["INDI", "NAME", "SEX", "BIRT", "DEAT", "FAMC", "FAMS", "FAM",
@@ -252,22 +252,6 @@ for c in famStorage:
 #             errors.append(["FAMILY", name, "US04", "Marriage date before divorce date"])
 #     ind+=1
 
-#User Story - US02 
-for x in famStorage[1:]:
-    if len(x) > 5:
-        marDate = x[1][:5]+toMonths(x[1][5:8])+x[1][8:]
-        husbID = x[3]
-        wifeID = x[5]
-    for y in indiStorage[1:]:
-        if y[3] != 'NA':
-            birthDate = indiStorage[lineNum - 1][3]
-        if husbID == y[0]:
-            if y[5] == 'FALSE' and formatDate(birthDate) > formatDate(marDate):
-                errors.append(["FAMILY", x[0], "US02", "Birth date after marriage date"])
-        if wifeID == y[0]:
-            if y[5] == 'FALSE' and formatDate(birthDate) > formatDate(marDate):
-                errors.append(["FAMILY", x[0], "US02", "Birth date after marriage date"])
-
 #User Story - US04
 for x in famStorage:
     if len(x) > 2 and x[2] != 'NA' and 'Married' not in x[1]:
@@ -275,6 +259,15 @@ for x in famStorage:
         if formatDate(marDate) > formatDate(x[2]):
             errors.append(["FAMILY", x[0], "US04", "Marriage date after divorce date"])
 
+#User Story - US02 
+for x in famStorage[1:]:
+    if len(x) > 2:
+        marrDate = x[1][:5]+toMonths(x[1][5:8])+x[1][8:]
+    for y in indiStorage[1:]:
+        birthday = y[3][:5]+toMonths(y[3][5:8])+y[3][8:]
+    if formatDate(birthday) > formatDate(marrDate):
+        errors.append(["FAMILY", birthday, marrDate, "US02", "Birth date after marriage date"])
+ 
 #User Story - US05
 for x in famStorage[1:]:
     if len(x) > 5:
