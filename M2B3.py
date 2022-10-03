@@ -236,6 +236,45 @@ for c in famStorage:
     if len(c) == 7:
         c.append('NA')
 
+#User Story - This is lowkey US11
+# divNames = []
+# for e in famStorage:
+#     if len(e) > 3 and 'Husband Name' not in e[4]:
+#         divNames.append(e[4])
+#         divNames.append([e[1], e[2]])
+# ind = 1
+# for name in divNames:
+#     if name in divNames[ind:]:
+#         divDate = divNames[ind][1]
+#         reMarrDate = divNames[len(divNames) - divNames[::-1].index(name)][0]
+#         reMarrDate = reMarrDate[:5] +toMonths(reMarrDate[5:8])+reMarrDate[8:]
+#         if formatDate(divDate) > formatDate(reMarrDate):
+#             errors.append(["FAMILY", name, "US04", "Marriage date before divorce date"])
+#     ind+=1
+
+
+#User Story - US04
+for x in famStorage:
+    if len(x) > 2 and x[2] != 'NA' and 'Married' not in x[1]:
+        marDate = x[1][:5]+toMonths(x[1][5:8])+x[1][8:]
+        if formatDate(marDate) > formatDate(x[2]):
+            errors.append(["FAMILY", x[0], "US04", "Marriage date after divorce date"])
+
+#User Story - US05
+for x in famStorage[1:]:
+    if len(x) > 5:
+        marDate = x[1][:5]+toMonths(x[1][5:8])+x[1][8:]
+        husbID = x[3]
+        wifeID = x[5]
+    for y in indiStorage[1:]:
+        if y[6] != 'NA':
+            deathDate = y[6][:5]+toMonths(y[6][5:8])+y[6][8:]
+        if husbID == y[0]:
+            if y[5] == 'FALSE' and formatDate(marDate) > formatDate(deathDate):
+                errors.append(["FAMILY", x[0], "US04", "Marriage date after death date"])
+        if wifeID == y[0]:
+            if y[5] == 'FALSE' and formatDate(marDate) > formatDate(deathDate):
+                errors.append(["FAMILY", x[0], "US04", "Marriage date after death date"])
 
 # Temporarily format tables
 print(np.array(indiStorage))
@@ -247,6 +286,3 @@ print(np.array(errors))
 # print(indiStorage)
 # print('\n')
 # print(famStorage)
-
-# print('\n')
-# print(tempFam)
