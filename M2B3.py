@@ -3,6 +3,7 @@ import datetime
 import os
 import numpy as np
 
+
 # Custom Functions
 from functions import formatDate, toMonths
 
@@ -89,11 +90,11 @@ for inputLine in GedcomFile:
         divorced = True
         continue
 
-
     if divorced == True:
         famStorage[famLineNum - 1].pop()
         famStorage[famLineNum - 1].pop()
-        famStorage[famLineNum- 1][2] = (arguments[2]+"-"+toMonths(arguments[1])+"-"+arguments[0])
+        famStorage[famLineNum - 1][2] = (arguments[2]
+                                         + "-"+toMonths(arguments[1])+"-"+arguments[0])
 
         divorced = False
 
@@ -139,13 +140,13 @@ for inputLine in GedcomFile:
         indiStorage[lineNum
                     - 1].append(arguments[2]+"-"+toMonths(arguments[1])+"-"+arguments[0])
         indiStorage[lineNum - 1].append(todaysDate.year - int(arguments[2]))
-        
 
         # User Story - US01
         numbersDate = arguments[2]+"-"+toMonths(arguments[1])+"-"+arguments[0]
         formattedBirthday = formatDate(numbersDate)
         if datetime.datetime.today() < formattedBirthday:
-            errors.append(["INDI", indiStorage[lineNum - 1][0], "US01", "Birthday occurs in the future"])
+            errors.append(["INDI", indiStorage[lineNum - 1][0],
+                          "US01", "Birthday occurs in the future"])
 
         birth = False
 
@@ -164,25 +165,26 @@ for inputLine in GedcomFile:
         # User Story - US03
         birthday = indiStorage[lineNum - 1][3]
         if formatDate(birthday) > formatDate(deathDate):
-            errors.append(["INDI", indiStorage[lineNum - 1][0], "US03", "Death before birth"])
+            errors.append(["INDI", indiStorage[lineNum - 1]
+                          [0], "US03", "Death before birth"])
 
         alive = True
-    
+
     # print(famStorage)
     if len(famStorage[famLineNum-1]) > 2 and 'Married' not in famStorage[famLineNum - 1][1]:
 
         divorced = famStorage[famLineNum - 1][2]
-    
 
     # User Story - US06
     if divorced and 'NA' not in divorced:
         # print(divorced)
         if len(arguments) > 2:
-            numbersDeathDate = arguments[2]+"-"+toMonths(arguments[1])+"-"+arguments[0]
+            numbersDeathDate = arguments[2]+"-" + \
+                toMonths(arguments[1])+"-"+arguments[0]
         numbersDivorceDate = divorced
         if formatDate(numbersDeathDate) > formatDate(numbersDivorceDate):
-            errors.append(["FAMILY", indiStorage[lineNum - 1][0], "US06", "Divorce date after death date"])
-        
+            errors.append(["FAMILY", indiStorage[lineNum - 1][0],
+                          "US06", "Divorce date after death date"])
 
     if len(indiStorage[lineNum - 1]) == 5:
         indiStorage[lineNum - 1].append('TRUE')
@@ -258,7 +260,8 @@ for x in famStorage:
     if len(x) > 2 and x[2] != 'NA' and 'Married' not in x[1]:
         marDate = x[1][:5]+toMonths(x[1][5:8])+x[1][8:]
         if formatDate(marDate) > formatDate(x[2]):
-            errors.append(["FAMILY", x[0], "US04", "Marriage date after divorce date"])
+            errors.append(
+                ["FAMILY", x[0], "US04", "Marriage date after divorce date"])
 
 #User Story - US05
 for x in famStorage[1:]:
@@ -271,10 +274,43 @@ for x in famStorage[1:]:
             deathDate = y[6][:5]+toMonths(y[6][5:8])+y[6][8:]
         if husbID == y[0]:
             if y[5] == 'FALSE' and formatDate(marDate) > formatDate(deathDate):
-                errors.append(["FAMILY", x[0], "US04", "Marriage date after death date"])
+                errors.append(
+                    ["FAMILY", x[0], "US04", "Marriage date after death date"])
         if wifeID == y[0]:
             if y[5] == 'FALSE' and formatDate(marDate) > formatDate(deathDate):
-                errors.append(["FAMILY", x[0], "US04", "Marriage date after death date"])
+                errors.append(
+                    ["FAMILY", x[0], "US04", "Marriage date after death date"])
+
+# User Story 35 (List Recent births within the last 30 days)
+# Define Array to contain data
+us35table = ['ID', 'Story #', 'Birthday']
+for x in indiStorage[1:]:
+    birthday = x[3]
+    if (birthday):
+        birthdate = datetime.datetime.strptime(
+                " ".join(birthday.split('-')), '%Y %m %d')
+        today = datetime.datetime.now()
+
+        if(birthdate >= today + datetime.timedelta(-30) and birthdate <= today):
+            us35table.append(
+                [x[0], "US35: Recent Birth", x[3]])
+
+# User Story 36 (List Recent deaths within the last 30 days)
+# Define Array to contain data
+
+us36table = ['ID', 'Story #', 'Death Date']
+for x in indiStorage[1:]:
+    deathDay = (x[6][:5]+toMonths(x[6][5:8])+x[6][8:])
+
+    if (deathDay != 'NAN/A'):
+        deathDate = datetime.datetime.strptime(
+                " ".join(deathDay.split('-')), '%Y %m %d')
+        today = datetime.datetime.now()
+
+        if(deathDate >= today + datetime.timedelta(-30) and deathDate <= today):
+            us36table.append(
+                [x[0], "US36: Recent Death", x[6]])
+
 
 # Temporarily format tables
 print(np.array(indiStorage))
