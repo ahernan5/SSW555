@@ -262,11 +262,11 @@ for x in famStorage[1:]:
         if y[3] != 'NA':
             birthDate = indiStorage[lineNum - 1][3]
         if husbID == y[0]:
-            if y[5] == 'FALSE' and formatDate(marDate) > formatDate(birthDate):
-                errors.append(["FAMILY", x[0], "US02", "Marriage date after birth date"])
+            if y[5] == 'FALSE' and formatDate(birthDate) > formatDate(MarrDate):
+                errors.append(["FAMILY", x[0], "US02", "Birth date after marriage date"])
         if wifeID == y[0]:
-            if y[5] == 'FALSE' and formatDate(marDate) > formatDate(birthDate):
-                errors.append(["FAMILY", x[0], "US02", "Marriage date after birth date"])
+            if y[5] == 'FALSE' and formatDate(birthDate) > formatDate(MarrDate):
+                errors.append(["FAMILY", x[0], "US02", "Birth date after marriage date"])
 
 #User Story - US04
 for x in famStorage:
