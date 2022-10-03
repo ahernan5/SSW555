@@ -262,10 +262,10 @@ for x in famStorage[1:]:
         if y[3] != 'NA':
             birthDate = indiStorage[lineNum - 1][3]
         if husbID == y[0]:
-            if y[5] == 'FALSE' and formatDate(birthDate) > formatDate(MarrDate):
+            if y[5] == 'FALSE' and formatDate(birthDate) > formatDate(marDate):
                 errors.append(["FAMILY", x[0], "US02", "Birth date after marriage date"])
         if wifeID == y[0]:
-            if y[5] == 'FALSE' and formatDate(birthDate) > formatDate(MarrDate):
+            if y[5] == 'FALSE' and formatDate(birthDate) > formatDate(marDate):
                 errors.append(["FAMILY", x[0], "US02", "Birth date after marriage date"])
 
 #User Story - US04
@@ -290,6 +290,36 @@ for x in famStorage[1:]:
         if wifeID == y[0]:
             if y[5] == 'FALSE' and formatDate(marDate) > formatDate(deathDate):
                 errors.append(["FAMILY", x[0], "US04", "Marriage date after death date"])
+
+# User Story 35 (List Recent births within the last 30 days)
+# Define Array to contain data
+us35table = ['ID', 'Story #', 'Birthday']
+for x in indiStorage[1:]:
+    birthday = x[3]
+    if (birthday):
+        birthdate = datetime.datetime.strptime(
+                " ".join(birthday.split('-')), '%Y %m %d')
+        today = datetime.datetime.now()
+
+        if(birthdate >= today + datetime.timedelta(-30) and birthdate <= today):
+            us35table.append(
+                [x[0], "US35: Recent Birth", x[3]])
+
+# User Story 36 (List Recent deaths within the last 30 days)
+# Define Array to contain data
+
+us36table = ['ID', 'Story #', 'Death Date']
+for x in indiStorage[1:]:
+    deathDay = (x[6][:5]+toMonths(x[6][5:8])+x[6][8:])
+
+    if (deathDay != 'NAN/A'):
+        deathDate = datetime.datetime.strptime(
+                " ".join(deathDay.split('-')), '%Y %m %d')
+        today = datetime.datetime.now()
+
+        if(deathDate >= today + datetime.timedelta(-30) and deathDate <= today):
+            us36table.append(
+                [x[0], "US36: Recent Death", x[6]])
 
 # Temporarily format tables
 print(np.array(indiStorage))
