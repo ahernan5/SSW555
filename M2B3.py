@@ -166,16 +166,23 @@ for inputLine in GedcomFile:
         if formatDate(birthday) > formatDate(deathDate):
             errors.append(["INDI", indiStorage[lineNum - 1][0], "US03", "Death before birth"])
 
-        divorced = famStorage[famLineNum - 1][2]
-
-        # User Story - US06
-        # if divorced:
-        #     print(divorced)
-        #     numbersDeathDate = arguments[2]+"-"+toMonths(arguments[1])+"-"+arguments[0]
-        #     numbersDivorceDate = divorced
-        #     if formatDate(numbersDeathDate) > formatDate(numbersDivorceDate):
-        #         errors.append(["FAMILY", indiStorage[lineNum - 1][0], "US06", "Divorce date after death date"])
         alive = True
+    
+    print(famStorage)
+    if len(famStorage[famLineNum-1]) > 2 and 'Married' not in famStorage[famLineNum - 1][1]:
+
+        divorced = famStorage[famLineNum - 1][1]
+    
+
+    # User Story - US06
+    if divorced:
+        print(divorced)
+        if len(arguments) > 2:
+            numbersDeathDate = arguments[2]+"-"+toMonths(arguments[1])+"-"+arguments[0]
+        numbersDivorceDate = divorced[:5] + toMonths(divorced[5:8]) + divorced[8:]
+        if formatDate(numbersDeathDate) > formatDate(numbersDivorceDate):
+            errors.append(["FAMILY", indiStorage[lineNum - 1][0], "US06", "Divorce date after death date"])
+        
 
     if len(indiStorage[lineNum - 1]) == 5:
         indiStorage[lineNum - 1].append('TRUE')
@@ -229,8 +236,6 @@ for c in famStorage:
     if len(c) == 7:
         c.append('NA')
 
-    # print(lineNum)
-    # print(famLineNum)
 
 # Temporarily format tables
 print(np.array(indiStorage))
