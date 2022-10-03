@@ -89,11 +89,11 @@ for inputLine in GedcomFile:
         divorced = True
         continue
 
+
     if divorced == True:
         famStorage[famLineNum - 1].pop()
         famStorage[famLineNum - 1].pop()
-        famStorage[famLineNum
-                   - 1].append(arguments[2]+"-"+toMonths(arguments[1])+"-"+arguments[0])
+        famStorage[famLineNum- 1][2] = (arguments[2]+"-"+toMonths(arguments[1])+"-"+arguments[0])
 
         divorced = False
 
@@ -166,16 +166,23 @@ for inputLine in GedcomFile:
         if formatDate(birthday) > formatDate(deathDate):
             errors.append(["INDI", indiStorage[lineNum - 1][0], "US03", "Death before birth"])
 
-        divorced = famStorage[famLineNum - 1][2]
-
-        # User Story - US06
-        # if divorced:
-        #     print(divorced)
-        #     numbersDeathDate = arguments[2]+"-"+toMonths(arguments[1])+"-"+arguments[0]
-        #     numbersDivorceDate = divorced
-        #     if formatDate(numbersDeathDate) > formatDate(numbersDivorceDate):
-        #         errors.append(["FAMILY", indiStorage[lineNum - 1][0], "US06", "Divorce date after death date"])
         alive = True
+    
+    # print(famStorage)
+    if len(famStorage[famLineNum-1]) > 2 and 'Married' not in famStorage[famLineNum - 1][1]:
+
+        divorced = famStorage[famLineNum - 1][2]
+    
+
+    # User Story - US06
+    if divorced and 'NA' not in divorced:
+        # print(divorced)
+        if len(arguments) > 2:
+            numbersDeathDate = arguments[2]+"-"+toMonths(arguments[1])+"-"+arguments[0]
+        numbersDivorceDate = divorced
+        if formatDate(numbersDeathDate) > formatDate(numbersDivorceDate):
+            errors.append(["FAMILY", indiStorage[lineNum - 1][0], "US06", "Divorce date after death date"])
+        
 
     if len(indiStorage[lineNum - 1]) == 5:
         indiStorage[lineNum - 1].append('TRUE')
@@ -229,8 +236,45 @@ for c in famStorage:
     if len(c) == 7:
         c.append('NA')
 
-    # print(lineNum)
-    # print(famLineNum)
+#User Story - This is lowkey US11
+# divNames = []
+# for e in famStorage:
+#     if len(e) > 3 and 'Husband Name' not in e[4]:
+#         divNames.append(e[4])
+#         divNames.append([e[1], e[2]])
+# ind = 1
+# for name in divNames:
+#     if name in divNames[ind:]:
+#         divDate = divNames[ind][1]
+#         reMarrDate = divNames[len(divNames) - divNames[::-1].index(name)][0]
+#         reMarrDate = reMarrDate[:5] +toMonths(reMarrDate[5:8])+reMarrDate[8:]
+#         if formatDate(divDate) > formatDate(reMarrDate):
+#             errors.append(["FAMILY", name, "US04", "Marriage date before divorce date"])
+#     ind+=1
+
+
+#User Story - US04
+for x in famStorage:
+    if len(x) > 2 and x[2] != 'NA' and 'Married' not in x[1]:
+        marDate = x[1][:5]+toMonths(x[1][5:8])+x[1][8:]
+        if formatDate(marDate) > formatDate(x[2]):
+            errors.append(["FAMILY", x[0], "US04", "Marriage date after divorce date"])
+
+#User Story - US05
+for x in famStorage[1:]:
+    if len(x) > 5:
+        marDate = x[1][:5]+toMonths(x[1][5:8])+x[1][8:]
+        husbID = x[3]
+        wifeID = x[5]
+    for y in indiStorage[1:]:
+        if y[6] != 'NA':
+            deathDate = y[6][:5]+toMonths(y[6][5:8])+y[6][8:]
+        if husbID == y[0]:
+            if y[5] == 'FALSE' and formatDate(marDate) > formatDate(deathDate):
+                errors.append(["FAMILY", x[0], "US04", "Marriage date after death date"])
+        if wifeID == y[0]:
+            if y[5] == 'FALSE' and formatDate(marDate) > formatDate(deathDate):
+                errors.append(["FAMILY", x[0], "US04", "Marriage date after death date"])
 
 # Temporarily format tables
 print(np.array(indiStorage))
@@ -242,6 +286,3 @@ print(np.array(errors))
 # print(indiStorage)
 # print('\n')
 # print(famStorage)
-
-# print('\n')
-# print(tempFam)
