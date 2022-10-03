@@ -261,12 +261,19 @@ for x in famStorage:
 
 #User Story - US02 
 for x in famStorage[1:]:
-    if len(x) > 2:
-        marrDate = x[1][:5]+toMonths(x[1][5:8])+x[1][8:]
+    if len(x) > 5:
+        marDate = x[1][:5]+toMonths(x[1][5:8])+x[1][8:]
+        husbID = x[3]
+        wifeID = x[5]
     for y in indiStorage[1:]:
-        birthday = y[3][:5]+toMonths(y[3][5:8])+y[3][8:]
-    if formatDate(birthday) > formatDate(marrDate):
-        errors.append(["FAMILY", birthday, marrDate, "US02", "Birth date after marriage date"])
+        if y[3] != 'NA':
+            birthDate = indiStorage[lineNum - 1][3]
+        if husbID == y[0]:
+            if y[5] == 'FALSE' and formatDate(birthDate) > formatDate(marDate):
+                errors.append(["FAMILY", x[0], "US02", "Birth date after marriage date"])
+        if wifeID == y[0]:
+            if y[5] == 'FALSE' and formatDate(birthDate) > formatDate(marDate):
+                errors.append(["FAMILY", x[0], "US02", "Birth date after marriage date"])
  
 #User Story - US05
 for x in famStorage[1:]:
