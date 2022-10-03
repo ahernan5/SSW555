@@ -252,6 +252,21 @@ for c in famStorage:
 #             errors.append(["FAMILY", name, "US04", "Marriage date before divorce date"])
 #     ind+=1
 
+#User Story - US02 
+for x in famStorage[1:]:
+    if len(x) > 5:
+        marDate = x[1][:5]+toMonths(x[1][5:8])+x[1][8:]
+        husbID = x[3]
+        wifeID = x[5]
+    for y in indiStorage[1:]:
+        if y[3] != 'NA':
+            birthDate = indiStorage[lineNum - 1][3]
+        if husbID == y[0]:
+            if y[5] == 'FALSE' and formatDate(marDate) > formatDate(birthDate):
+                errors.append(["FAMILY", x[0], "US02", "Marriage date after birth date"])
+        if wifeID == y[0]:
+            if y[5] == 'FALSE' and formatDate(marDate) > formatDate(birthDate):
+                errors.append(["FAMILY", x[0], "US02", "Marriage date after birth date"])
 
 #User Story - US04
 for x in famStorage:
