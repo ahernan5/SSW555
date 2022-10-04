@@ -298,8 +298,9 @@ for x in famStorage[1:]:
                     ["FAMILY", x[0], "US04", "Marriage date after death date"])
 
 # User Story 35 (List Recent births within the last 30 days)
-def us35(indiStorage):
 
+
+def us35(indiStorage):
 
     # Define Array to contain data
     us35table = ['ID', 'Story #', 'Birthday']
@@ -318,7 +319,7 @@ def us35(indiStorage):
 
 
 # User Story 36 (List Recent deaths within the last 30 days)
-def us35(indiStorage):
+def us36(indiStorage):
 
     # Define Array to contain data
     us36table = ['ID', 'Story #', 'Death Date']
