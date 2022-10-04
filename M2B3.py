@@ -286,10 +286,10 @@ for x in famStorage[1:]:
             deathDate = y[6][:5]+toMonths(y[6][5:8])+y[6][8:]
         if husbID == y[0]:
             if y[5] == 'FALSE' and formatDate(marDate) > formatDate(deathDate):
-                errors.append(["FAMILY", x[0], "US04", "Marriage date after death date"])
+                errors.append(["FAMILY", x[0], "US05", "Marriage date after death date"])
         if wifeID == y[0]:
             if y[5] == 'FALSE' and formatDate(marDate) > formatDate(deathDate):
-                errors.append(["FAMILY", x[0], "US04", "Marriage date after death date"])
+                errors.append(["FAMILY", x[0], "US05", "Marriage date after death date"])
 
 # User Story 35 (List Recent births within the last 30 days)
 # Define Array to contain data
