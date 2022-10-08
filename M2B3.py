@@ -1,5 +1,6 @@
 from datetime import date
 import datetime
+from email.quoprimime import unquote
 import os
 import numpy as np
 
@@ -37,6 +38,7 @@ husbName = ''
 wife = ''
 wifeName = ''
 
+uniqueIds = []
 tempFam = []
 
 for inputLine in GedcomFile:
@@ -121,7 +123,11 @@ for inputLine in GedcomFile:
         famStorage[famLineNum - 1].append('')
 
     #indiviual storage
+    # User Story - US22
     if level == 0 and 'INDI' in arguments:
+        if lineTag in uniqueIds:
+            errors.append(["INDI", indiStorage[lineNum - 1][0], "US22", "ID is not unique"])
+        uniqueIds.append(lineTag)
         indiStorage.append([lineTag])
         lineNum += 1
 
@@ -334,6 +340,7 @@ def us36(indiStorage):
                     [x[0], "US36: Recent Death", x[6]])
 
     return us36table
+
 
 
 # Temporarily format tables
