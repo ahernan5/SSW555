@@ -37,6 +37,7 @@ husbName = ''
 wife = ''
 wifeName = ''
 
+uniqueNamesAndBirthday = []
 tempFam = []
 
 for inputLine in GedcomFile:
@@ -147,6 +148,13 @@ for inputLine in GedcomFile:
             errors.append(["INDI", indiStorage[lineNum - 1][0],
                           "US01", "Birthday occurs in the future"])
 
+        # User Story - US23
+        tempCheckBirthNameCombo = {indiStorage[lineNum - 1][1]: formattedBirthday}
+        if(tempCheckBirthNameCombo in uniqueNamesAndBirthday):
+            errors.append(["INDI", indiStorage[lineNum - 1][0],
+                          "US23", "Name /  birthday combo is not unique"])
+        uniqueNamesAndBirthday.append(tempCheckBirthNameCombo)
+
         birth = False
 
     if level == 1 and 'DEAT' in lineTag:
@@ -166,6 +174,11 @@ for inputLine in GedcomFile:
         if formatDate(birthday) > formatDate(deathDate):
             errors.append(["INDI", indiStorage[lineNum - 1]
                           [0], "US03", "Death before birth"])
+
+        # User Story - US07
+        if (formatDate(deathDate) - formatDate(birthday)).days > 365 * 150:
+             errors.append(["INDI", indiStorage[lineNum - 1]
+                          [0], "US07", "Age of death is over 150"])
 
         alive = True
 
