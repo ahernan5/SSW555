@@ -57,3 +57,21 @@ def us03(GEDCOM_dict):
     
     return deathBeforeBirthTable
 
+
+# __________________Sprint 2__________________
+
+# No more than one individual with the same name and birth date should appear in a GEDCOM file
+def us23(GEDCOM_dict):
+    
+        uniqueNameBirthTable = PrettyTable()
+        uniqueNameBirthTable.field_names = ['ID', 'Name', 'Birthday']
+    
+        individualData = GEDCOM_dict['individualData']
+    
+        for key, value in individualData.items():
+            for key2, value2 in individualData.items():
+                if (key != key2 and value['NAME'] == value2['NAME'] and value['BIRT'] == value2['BIRT']):
+                    row = [key, value['NAME'], value['BIRT']]
+                    uniqueNameBirthTable.add_row(row)
+    
+        return uniqueNameBirthTable
