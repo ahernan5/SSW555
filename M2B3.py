@@ -1,5 +1,6 @@
 from datetime import date
 import datetime
+from email.quoprimime import unquote
 import os
 import numpy as np
 import unittest
@@ -252,7 +253,6 @@ def M2B3(GedcomFile):
     #             errors.append(["FAMILY", name, "US04", "Marriage date before divorce date"])
     #     ind+=1
 
-
     #User Story - US04
     for x in famStorage:
         if len(x) > 2 and x[2] != 'NA' and 'Married' not in x[1]:
@@ -323,8 +323,7 @@ class TestClass(unittest.TestCase):
     def test_US05_5(self):
         gedTestFile = open(os.getcwd() + '/gedTest1.txt', 'r')
         self.assertNotEquals(M2B3(gedTestFile), "[['FAMILY', '@F3@', 'US04', 'Marriage date after death date']]", "Should be no errors.")
-
-
+        
 if __name__ == '__main__':
     #opening the GEDCOM file for reading
     GedcomFile = open(os.getcwd() + '/M1B6.txt', 'r')
