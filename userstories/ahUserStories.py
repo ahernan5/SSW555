@@ -74,3 +74,16 @@ def us23(GEDCOM_dict):
                     uniqueNameBirthTable.add_row(row)
     
         return uniqueNameBirthTable
+
+# List all deceased individuals in a GEDCOM file
+def us29(GEDCOM_dict):
+    
+    deceasedTable = PrettyTable()
+    deceasedTable.field_names = ['ID', 'Name', 'Birthday', 'Death']
+    
+    for key, value in GEDCOM_dict['individualData'].items():
+        if (value['DEAT'] != 'N/A'):
+            row = [key, value['NAME'], value['BIRT'], value['DEAT']]
+            deceasedTable.add_row(row)
+    
+    return deceasedTable
