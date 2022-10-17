@@ -37,12 +37,11 @@ def us02(GEDCOM_dict):
     return invalidDateTable
 
 
-
 # Birth should occur before death of an individual
 def us03(GEDCOM_dict):
 
     deathBeforeBirthTable = PrettyTable()
-    deathBeforeBirthTable.field_names = ['ID', 'Name', 'Birthday','Death']
+    deathBeforeBirthTable.field_names = ['ID', 'Name', 'Birthday', 'Death']
 
     for key, value in GEDCOM_dict['individualData'].items():
         if (value['BIRT'] and value['BIRT'] != 'N/A'):
@@ -54,6 +53,25 @@ def us03(GEDCOM_dict):
             if(deathdate <= birthdate):
                 row = [key, value['NAME'], value['BIRT'], value['DEAT']]
                 deathBeforeBirthTable.add_row(row)
-    
+
     return deathBeforeBirthTable
 
+
+def us23(GEDCOM_dict):
+
+    sameBirthName = PrettyTable()
+    sameBirthName.field_names = ['ID', 'Name', 'Birthday']
+    rev_dict = {}
+
+    for key, value in GEDCOM_dict['individualData'].items():
+        rev_dict.setdefault(value, set()).add(key)
+        result = [key for key, values in rev_dict.items()
+                  if len(values) > 1]
+        if (value['BIRT'] and value['BIRT'] != 'N/A'):
+            birthdate = datetime.datetime.strptime(
+                " ".join(value['BIRT'].split('-')), '%Y %m %d')
+
+            row = [key, value['NAME'], value['BIRT'], value['DEAT']]
+            sameBirthName.add_row(row)
+
+    return sameBirthName
