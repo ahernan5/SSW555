@@ -31,6 +31,13 @@ def displayErrors(fileName, GEDCOM_dict):
     print('\n[us03] Error: Death Occurs Before Birth')
     print(us03)
     
+    us23 = ahUserStories.us23(GEDCOM_dict)
+    with open(fileName[:-4] + '_output.txt', 'a+') as output:
+        output.write("[us23] - Error: Name/Birthday Combo Not Unique\n")
+        output.write(us23.get_string(
+            title="[us23] - Error: Name/Birthday Combo Not Unique")+'\n\n')
+    print('\n[us23] Error: Name/Birthday Combo Not Unique')
+    print(us23)
 
 def main(fileName, GEDCOM_dict):
 
