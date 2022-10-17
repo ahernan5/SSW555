@@ -237,22 +237,6 @@ def M2B3(GedcomFile):
         if len(c) == 7:
             c.append('NA')
 
-    #User Story - This is lowkey US11
-    # divNames = []
-    # for e in famStorage:
-    #     if len(e) > 3 and 'Husband Name' not in e[4]:
-    #         divNames.append(e[4])
-    #         divNames.append([e[1], e[2]])
-    # ind = 1
-    # for name in divNames:
-    #     if name in divNames[ind:]:
-    #         divDate = divNames[ind][1]
-    #         reMarrDate = divNames[len(divNames) - divNames[::-1].index(name)][0]
-    #         reMarrDate = reMarrDate[:5] +toMonths(reMarrDate[5:8])+reMarrDate[8:]
-    #         if formatDate(divDate) > formatDate(reMarrDate):
-    #             errors.append(["FAMILY", name, "US04", "Marriage date before divorce date"])
-    #     ind+=1
-
     #User Story - US04
     for x in famStorage:
         if len(x) > 2 and x[2] != 'NA' and 'Married' not in x[1]:
@@ -317,42 +301,42 @@ def M2B3(GedcomFile):
     # print('\n')
     # print(famStorage)
 
-# class TestClass(unittest.TestCase):
-#     def test_US04_1(self):
-#         gedTestFile = open(os.getcwd() + '/gedTest.txt', 'r')
-#         self.assertEquals(M2B3(gedTestFile), "[['FAMILY', '@F2@', 'US04', 'Marriage date after divorce date']]", "Should be 1 error with marriage after divorce")
-#     def test_US04_2(self):
-#         gedTestFile = open(os.getcwd() + '/gedTest.txt', 'r')
-#         self.assertTrue(M2B3(gedTestFile), len(M2B3(gedTestFile)) == 1)
-#     def test_US04_3(self):
-#         gedTestFile = open(os.getcwd() + '/gedTest.txt', 'r')
-#         self.assertNotEquals(M2B3(gedTestFile), "[['FAMILY', '@F2@', 'US04', 'Marriage date after divorce date']['FAMILY', '@F4@', 'US04', 'Marriage date after divorce date']]", "Should be just 1 error with marriage after divorce")
-#     def test_US04_4(self):
-#         gedTestFile = open(os.getcwd() + '/M1B6.txt', 'r')
-#         self.assertEquals(M2B3(gedTestFile), "[]", "Should be no errors")
-#     def test_US04_5(self):
-#         gedTestFile = open(os.getcwd() + '/M1B6.txt', 'r')
-#         self.assertNotEquals(M2B3(gedTestFile), "[['FAMILY', '@F4@', 'US04', 'Marriage date after divorce date']]", "Should be no errors")
+class TestClass(unittest.TestCase):
+    def test_US04_1(self):
+        gedTestFile = open(os.getcwd() + '/gedTest.txt', 'r')
+        self.assertEquals(M2B3(gedTestFile), "[['FAMILY', '@F2@', 'US04', 'Marriage date after divorce date']]", "Should be 1 error with marriage after divorce")
+    def test_US04_2(self):
+        gedTestFile = open(os.getcwd() + '/gedTest.txt', 'r')
+        self.assertTrue(M2B3(gedTestFile), len(M2B3(gedTestFile)) == 1)
+    def test_US04_3(self):
+        gedTestFile = open(os.getcwd() + '/gedTest.txt', 'r')
+        self.assertNotEquals(M2B3(gedTestFile), "[['FAMILY', '@F2@', 'US04', 'Marriage date after divorce date']['FAMILY', '@F4@', 'US04', 'Marriage date after divorce date']]", "Should be just 1 error with marriage after divorce")
+    def test_US04_4(self):
+        gedTestFile = open(os.getcwd() + '/M1B6.txt', 'r')
+        self.assertEquals(M2B3(gedTestFile), "[]", "Should be no errors")
+    def test_US04_5(self):
+        gedTestFile = open(os.getcwd() + '/M1B6.txt', 'r')
+        self.assertNotEquals(M2B3(gedTestFile), "[['FAMILY', '@F4@', 'US04', 'Marriage date after divorce date']]", "Should be no errors")
 
-#     def test_US05_1(self):
-#         gedTestFile = open(os.getcwd() + '/gedTest1.txt', 'r')
-#         self.assertEquals(M2B3(gedTestFile), "[['FAMILY', '@F2@', 'US04', 'Marriage date after divorce date'], ['FAMILY', '@F4@', 'US04', 'Marriage date after death date'], ['FAMILY', '@F3@', 'US04', 'Marriage date after death date']]", "Should be 3 errors. 1 with marriage after divorce and 2 with marriage after death")
+    def test_US05_1(self):
+        gedTestFile = open(os.getcwd() + '/gedTest1.txt', 'r')
+        self.assertEquals(M2B3(gedTestFile), "[['FAMILY', '@F2@', 'US04', 'Marriage date after divorce date'], ['FAMILY', '@F4@', 'US04', 'Marriage date after death date'], ['FAMILY', '@F3@', 'US04', 'Marriage date after death date']]", "Should be 3 errors. 1 with marriage after divorce and 2 with marriage after death")
 
-#     def test_US05_2(self):
-#         gedTestFile = open(os.getcwd() + '/gedTest1.txt', 'r')
-#         self.assertTrue(M2B3(gedTestFile), len(M2B3(gedTestFile)) == 3)
+    def test_US05_2(self):
+        gedTestFile = open(os.getcwd() + '/gedTest1.txt', 'r')
+        self.assertTrue(M2B3(gedTestFile), len(M2B3(gedTestFile)) == 3)
 
-#     def test_US05_3(self):
-#         gedTestFile = open(os.getcwd() + '/gedTest1.txt', 'r')
-#         self.assertNotEquals(M2B3(gedTestFile), "[['FAMILY', '@F4@', 'US04', 'Marriage date after death date'], ['FAMILY', '@F3@', 'US04', 'Marriage date after death date']]", "Should be 3 errors. 1 with marriage after divorce and 2 with marriage after death")
+    def test_US05_3(self):
+        gedTestFile = open(os.getcwd() + '/gedTest1.txt', 'r')
+        self.assertNotEquals(M2B3(gedTestFile), "[['FAMILY', '@F4@', 'US04', 'Marriage date after death date'], ['FAMILY', '@F3@', 'US04', 'Marriage date after death date']]", "Should be 3 errors. 1 with marriage after divorce and 2 with marriage after death")
 
-#     def test_US05_4(self):
-#         gedTestFile = open(os.getcwd() + '/M1B6.txt', 'r')
-#         self.assertEquals(M2B3(gedTestFile), "[]", "Should be no errors")
+    def test_US05_4(self):
+        gedTestFile = open(os.getcwd() + '/M1B6.txt', 'r')
+        self.assertEquals(M2B3(gedTestFile), "[]", "Should be no errors")
 
-#     def test_US05_5(self):
-#         gedTestFile = open(os.getcwd() + '/gedTest1.txt', 'r')
-#         self.assertNotEquals(M2B3(gedTestFile), "[['FAMILY', '@F3@', 'US04', 'Marriage date after death date']]", "Should be no errors.")
+    def test_US05_5(self):
+        gedTestFile = open(os.getcwd() + '/gedTest1.txt', 'r')
+        self.assertNotEquals(M2B3(gedTestFile), "[['FAMILY', '@F3@', 'US04', 'Marriage date after death date']]", "Should be no errors.")
         
 if __name__ == '__main__':
     #opening the GEDCOM file for reading
