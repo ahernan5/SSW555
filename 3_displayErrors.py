@@ -20,9 +20,17 @@ def displayErrors(fileName, GEDCOM_dict):
         output.write("[us02] - Error: Birth Occurs After Marriage Date\n")
         output.write(us02.get_string(
             title="[us02] - Error: Birth Occurs After Marriage Date")+'\n\n')
-    print('\n[us02] Error: Date Occurs After Current Date')
+    print('\n[us02] Error: Birth Occurs After Marriage Date')
     print(us02)
 
+    us03 = ahUserStories.us03(GEDCOM_dict)
+    with open(fileName[:-4] + '_output.txt', 'a+') as output:
+        output.write("[us03] - Error: Death Occurs Before Birth\n")
+        output.write(us03.get_string(
+            title="[us03] - Error: Death Occurs Before Birth")+'\n\n')
+    print('\n[us03] Error: Death Occurs Before Birth')
+    print(us03)
+    
 
 def main(fileName, GEDCOM_dict):
 

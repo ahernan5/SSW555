@@ -3,6 +3,8 @@ from prettytable import PrettyTable
 
 
 # __________________Sprint 1__________________
+
+# Birth should occur before marriage of an individual
 def us02(GEDCOM_dict):
 
     invalidDateTable = PrettyTable()
@@ -33,3 +35,25 @@ def us02(GEDCOM_dict):
                                          ['BIRT'], value['WIFE'], value['WIFE_NAME'], individualData[value['WIFE']]['BIRT'], value['MARRLine']])
 
     return invalidDateTable
+
+
+
+# Birth should occur before death of an individual
+def us03(GEDCOM_dict):
+
+    deathBeforeBirthTable = PrettyTable()
+    deathBeforeBirthTable.field_names = ['ID', 'Name', 'Birthday','Death']
+
+    for key, value in GEDCOM_dict['individualData'].items():
+        if (value['BIRT'] and value['BIRT'] != 'N/A'):
+            birthdate = datetime.datetime.strptime(
+                " ".join(value['BIRT'].split('-')), '%Y %m %d')
+        if (value['DEAT'] and value['DEAT'] != 'N/A'):
+            deathdate = datetime.datetime.strptime(
+                " ".join(value['DEAT'].split('-')), '%Y %m %d')
+            if(deathdate <= birthdate):
+                row = [key, value['NAME'], value['BIRT'], value['DEAT']]
+                deathBeforeBirthTable.add_row(row)
+    
+    return deathBeforeBirthTable
+
