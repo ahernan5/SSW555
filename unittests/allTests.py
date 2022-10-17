@@ -22,27 +22,6 @@ class Tests(unittest.TestCase):
         output = testTable
         self.assertEqual(us02(input).get_string(), output.get_string())
 
-    def test_us35(self):
-        input = {'individualData': {'@I1@': {'NAME': 'Hayden /Daly/',
-                                             'BIRT': '2019-07-06'}, '@I2@': {'NAME': 'Todd /Daly/', 'BIRT': '2018-03-07'}}}
-
-        testTable = PrettyTable()
-        testTable.field_names = ['ID', 'Name', 'Birthday']
-        testTable.add_row(['@I1@', 'Hayden /Daly/', '2019-07-06'])
-
-        output = testTable
-        self.assertEqual(us35(input).get_string(), output.get_string())
-
-    def test_us36(self):
-        input = {'individualData': {'@I1@': {'NAME': 'Hayden /Daly/', 'DEAT': '2019-07-06'},
-                                    '@I2@': {'NAME': 'Todd /Daly/', 'BIRT': '2019-03-07', 'DEAT': 'N/A'}}}
-
-        testTable = PrettyTable()
-        testTable.field_names = ['ID', 'Name', 'Death']
-        testTable.add_row(['@I1@', 'Hayden /Daly/', '2019-07-06'])
-
-        output = testTable
-        self.assertEqual(us36(input).get_string(), output.get_string())
 
     def test_us41(self):
         input = "MAR 2000"  # Date without Days
