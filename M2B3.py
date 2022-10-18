@@ -314,9 +314,36 @@ for x in famStorage[1:]:
             if y[5] == 'FALSE' and formatDate(marDate) > formatDate(deathDate):
                 errors.append(["FAMILY", x[0], "US05", "Marriage date after death date"])
 
+#User Story - US10
+    for x in famStorage[1:]:
+        if len(x) > 5:
+            marDate = x[1][:5]+toMonths(x[1][5:8])+x[1][8:]
+            husbID = x[3]
+            wifeID = x[5]
+        for y in indiStorage[1:]:
+            if husbID == y[0]:
+                if int(marDate[:4]) - int(y[3][:4]) < 14:
+                    errors.append(["FAMILY", x[0], "US10", "Marriage before 14"])
+            if wifeID == y[0]:
+                if int(marDate[:4]) - int(y[3][:4]) < 14:
+                    errors.append(["FAMILY", x[0], "US10", "Marriage before 14"])
+
+    #User Story - US11
+    bigamy = []
+    for x in famStorage[1:]:
+        if len(x) > 5 and 'NA' not in x[2]:
+            bigamy.append([x[0],x[1],x[2]])
+    for y in bigamy:
+        try:
+            if y[0] in bigamy[bigamy.index(y)+1:][0]:
+                if formatDate(y[1]) > formatDate(bigamy[bigamy.index(y)+1][2]):
+                    errors.append(["FAMILY", x[0], "US10", "Bigamy"])
+        except:
+            #if list index is out of range
+            pass
+        
+
 # User Story 35 (List Recent births within the last 30 days)
-
-
 def us35(indiStorage):
 
     # Define Array to contain data
