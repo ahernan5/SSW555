@@ -15,6 +15,14 @@ from userstories import ahUserStories, fdUserStories, msUserStories, shUserStori
 
 def displayErrors(fileName, GEDCOM_dict):
 
+    us01 = fdUserStories.us01(GEDCOM_dict)
+    with open(fileName + '_output.txt', 'a+') as output:
+        output.write("[us01] - Error: Dates (Birth, Marriage, Divorce, Death) should not be after the current date\n")
+        output.write(us01.get_string(
+            title="[us01] - Error: Dates (Birth, Marriage, Divorce, Death) should not be after the current date")+'\n\n')
+    print('\n[us01] Error: Dates (Birth, Marriage, Divorce, Death) should not be after the current date')
+    print(us01)
+
     us02 = ahUserStories.us02(GEDCOM_dict)
     with open(fileName[:-4] + '_output.txt', 'a+') as output:
         output.write("[us02] - Error: Birth Occurs After Marriage Date\n")
@@ -31,6 +39,28 @@ def displayErrors(fileName, GEDCOM_dict):
     print('\n[us03] Error: Death Occurs Before Birth')
     print(us03)
 
+    us06 = fdUserStories.us06(GEDCOM_dict)
+    with open(fileName[:-4] + '_output.txt', 'a+') as output:
+        output.write("[us06] - Error: Divorce Occurs After Death\n")
+    print('\n[us06] Error: Divorce Occurs After Death')
+    print(us06)
+
+    us07 = fdUserStories.us07(GEDCOM_dict)
+    with open(fileName[:-4] + '_output.txt', 'a+') as output:
+        output.write("[us07] - Error: Age is Less Than 150 Years\n")
+        output.write(us07.get_string(
+            title="[us07] - Error: Age is Less Than 150 Years")+'\n\n')
+    print('\n[us07] Error: Age is Less Than 150 Years')
+    print(us07)
+
+    us21 = fdUserStories.us21(GEDCOM_dict)
+    with open(fileName[:-4] + '_output.txt', 'a+') as output:
+        output.write("[us21] - Error: Incorrect gender for role\n")
+        output.write(us21.get_string(
+            title="[us21] - Error: Incorrect gender for role")+'\n\n')
+    print('\n[us21] Error: Incorrect gender for role')
+    print(us21)
+
     us23 = ahUserStories.us23(GEDCOM_dict)
     with open(fileName[:-4] + '_output.txt', 'a+') as output:
         output.write("[us23] - Error: Name/Birthday Combo Not Unique\n")
@@ -44,7 +74,7 @@ def displayErrors(fileName, GEDCOM_dict):
         output.write("[us29] - Error: Deceased Individuals\n")
         output.write(us29.get_string(
             title="[us29] - Error: Deceased Individuals")+'\n\n')
-    print('\n[us29] Error: Deceased Individuals')
+    print('\n[us29] List: Deceased Individuals')
     print(us29)
     
 
