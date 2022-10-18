@@ -13,7 +13,7 @@ todaysDate = date.today()
 
 #opening the GEDCOM file for reading
 GedcomFile = open(
-    os.getcwd() + '/M1B6.txt', 'r')
+    os.getcwd() + '/M1B6.ged', 'r')
 
 #tags supported for our project
 supportedTags = ["INDI", "NAME", "SEX", "BIRT", "DEAT", "FAMC", "FAMS", "FAM",
