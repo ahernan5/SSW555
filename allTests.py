@@ -1,6 +1,7 @@
 from prettytable import PrettyTable
-from ahUserStories import us02, us03
-from msUserStories import us35, us36, us41, us42
+from userstories.ahUserStories import us02, us03
+from userstories.msUserStories import us35, us36, us41, us42
+from userstories.fdUserStories import us07, us06
 import unittest
 import sys
 import os
@@ -58,6 +59,22 @@ class Tests(unittest.TestCase):
         output = "07 NOV 3000"
 
         self.assertEqual(us42(input), output)
+
+    # Frankie Test Cases
+
+    # def test_us07(self):
+    #     self.maxDiff = None
+    #     input = {'individualData': {'@I1@': {'NAME': 'HUSB', 'BIRT': '1700-03-07', 'DEAT': '2020-02-27'}, '@I2@': {'NAME': 'WIFE', 'BIRT': '1700-03-07', 'DEAT': 'N/A'}},
+    #              'familyData': {}}
+
+    #     invalidAgeTable = PrettyTable()
+    #     invalidAgeTable.field_names = ['ID', 'Name', 'Birthday', 'Deathday']
+
+    #     invalidAgeTable.add_row(['@I1@', 'HUSB', '1700-03-07', '2020-02-27'])
+    #     invalidAgeTable.add_row(['@I2@', 'WIFE', '1700-03-07', 'N/A'])
+
+    #     output = invalidAgeTable
+    #     self.assertEqual(us07(input).get_string(), output.get_string())
 
 
 unittest.main()

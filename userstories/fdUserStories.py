@@ -88,20 +88,20 @@ def us07(GEDCOM_dict):
 
 
     for key, value in individualData.items():
-        if (value['BIRT'] and value['BIRT'] != 'N/A'):
+        if ('BIRT' in value and value['BIRT'] != 'N/A'):
             birthdate = datetime.datetime.strptime(
                 " ".join(value['BIRT'].split('-')), '%Y %m %d')
-        if (value['DEAT'] and value['DEAT'] != 'N/A'):
+        if ('DEAT' in value and value['DEAT'] != 'N/A'):
             deathdate = datetime.datetime.strptime(
                 " ".join(value['DEAT'].split('-')), '%Y %m %d')
 
         if(birthdate and deathdate):
-            if(deathdate - birthdate > 150):
+            if(((deathdate - birthdate).days / 365) > 150):
                 row = [key, value['NAME'], birthdate, deathdate]
                 invalidAgeTable.add_row(row)
         
         if(birthdate):
-            if(datetime.datetime.today() - birthdate > 150):
+            if(((datetime.datetime.today() - birthdate).days / 365) > 150):
                 row = [key, value['NAME'], birthdate, "N/A"]
                 invalidAgeTable.add_row(row)
         
