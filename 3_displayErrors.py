@@ -47,10 +47,10 @@ def displayErrors(fileName, GEDCOM_dict):
 
     us07 = fdUserStories.us07(GEDCOM_dict)
     with open(fileName[:-4] + '_output.txt', 'a+') as output:
-        output.write("[us07] - Error: Age is Less Than 150 Years\n")
+        output.write("[us07] - Error: Age is Greater Than 150 Years\n")
         output.write(us07.get_string(
-            title="[us07] - Error: Age is Less Than 150 Years")+'\n\n')
-    print('\n[us07] Error: Age is Less Than 150 Years')
+            title="[us07] - Error: Age is Greater Than 150 Years")+'\n\n')
+    print('\n[us07] Error: Age is Greater Than 150 Years')
     print(us07)
 
     us21 = fdUserStories.us21(GEDCOM_dict)
