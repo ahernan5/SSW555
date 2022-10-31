@@ -1,3 +1,4 @@
+from bisect import bisect_right
 import datetime
 from prettytable import PrettyTable
 
@@ -123,3 +124,49 @@ def us21(GEDCOM_dict):
                 invalidGenderRolesTable.add_row(row)
 
     return invalidGenderRolesTable
+
+# List upcoming birthdays
+def us38(GEDCOM_dict):
+    upcomingBirthdays = PrettyTable()
+    upcomingBirthdays.field_names = ['ID', 'Name', 'Birthday']
+
+    individualData = GEDCOM_dict['individualData']
+    today = datetime.datetime.today()
+    for key, value in individualData.items():
+        if (value['DEAT'] and value['DEAT'] == 'N/A'):
+            if (value['BIRT'] and value['BIRT'] != 'N/A'):
+                birthdate = datetime.datetime.strptime(
+                    " ".join(value['BIRT'].split('-')), '%Y %m %d')
+                if(birthdate >= today and birthdate <= today + datetime.timedelta(30)):
+                    row = [key, value["NAME"], value["BIRT"]]
+                    upcomingBirthdays.add_row(row)
+
+    return upcomingBirthdays
+
+# Marriage after 14
+def us10(GEDCOM_dict):
+    invalidMarriageDate = PrettyTable()
+    invalidMarriageDate.field_names = ['FAM_ID', 'Marriage Date', 'Age']
+
+    familyData = GEDCOM_dict['familyData']
+    individualData = GEDCOM_dict['individualData']
+    
+    for key, value in familyData.items():
+       if (value['MARR'] != 'N/A'):
+            husbandBirthday = datetime.datetime.strptime(
+                    " ".join(individualData[value['HUSB']]['BIRT'].split('-')), '%Y %m %d')
+            wifeBirthday = datetime.datetime.strptime(
+                    " ".join(individualData[value['WIFE']]['BIRT'].split('-')), '%Y %m %d')
+
+            marriageDate = datetime.datetime.strptime(
+                    " ".join(["MARR"].split('-')), '%Y %m %d')
+            
+            if((marriageDate - wifeBirthday).days / 365 < 14):
+                row = [key, marriageDate, value["BIRT"], (marriageDate - wifeBirthday).days / 365]
+                invalidMarriageDate.add_row(row)
+
+            if((marriageDate - husbandBirthday).days / 365 < 14):
+                row = [key, marriageDate, value["BIRT"], (marriageDate - husbandBirthday).days / 365]
+                invalidMarriageDate.add_row(row)
+
+    return invalidMarriageDate
