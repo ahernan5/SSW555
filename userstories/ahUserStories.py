@@ -114,17 +114,17 @@ def us31(GEDCOM_dict):
 # List all multiple births in a GEDCOM file
 def us32(GEDCOM_dict):
         
-        multipleBirthsTable = PrettyTable()
-        multipleBirthsTable.field_names = ['ID', 'Name', 'Birthday', 'Wife ID', 'Wife Name']
+    multipleBirthsTable = PrettyTable()
+    multipleBirthsTable.field_names = ['ID', 'Name', 'Birthday', 'Wife ID', 'Wife Name']
         
-        for key, value in GEDCOM_dict['individualData'].items():
-            if (value['BIRT'] != 'N/A'):
-                for key2, value2 in GEDCOM_dict['individualData'].items():
-                    if (key != key2 and value['BIRT'] == value2['BIRT'] and value['FAMC'] == value2['FAMC']):
-                        row = [key, value['NAME'], value['BIRT'], value['FAMC'], GEDCOM_dict['familyData'][value['FAMC']]['WIFE_NAME']]
-                        multipleBirthsTable.add_row(row)
+    for key, value in GEDCOM_dict['individualData'].items():
+        if (value['BIRT'] != 'N/A'):
+            for key2, value2 in GEDCOM_dict['individualData'].items():
+                if (key != key2 and value['BIRT'] == value2['BIRT'] and value['FAMC'] == value2['FAMC']):
+                    row = [key, value['NAME'], value['BIRT'], value['FAMC'], GEDCOM_dict['familyData'][value['FAMC']]['WIFE_NAME']]
+                    multipleBirthsTable.add_row(row)
         
-        return multipleBirthsTable
+    return multipleBirthsTable
 
    
         
