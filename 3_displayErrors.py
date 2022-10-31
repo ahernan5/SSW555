@@ -12,12 +12,16 @@ from userstories import ahUserStories, fdUserStories, msUserStories, shUserStori
 
 
 # Errors:
+# User Stories: 1, 2 , 3, 6 , 7, 21, 23, 29
+# Implemented user story 41 and 42 in file 1_storeDataAsDict.py
+
 
 def displayErrors(fileName, GEDCOM_dict):
 
     us01 = fdUserStories.us01(GEDCOM_dict)
     with open(fileName + '_output.txt', 'a+') as output:
-        output.write("[us01] - Error: Dates (Birth, Marriage, Divorce, Death) should not be after the current date\n")
+        output.write(
+            "[us01] - Error: Dates (Birth, Marriage, Divorce, Death) should not be after the current date\n")
         output.write(us01.get_string(
             title="[us01] - Error: Dates (Birth, Marriage, Divorce, Death) should not be after the current date")+'\n\n')
     print('\n[us01] Error: Dates (Birth, Marriage, Divorce, Death) should not be after the current date')
@@ -76,7 +80,9 @@ def displayErrors(fileName, GEDCOM_dict):
             title="[us29] - Error: Deceased Individuals")+'\n\n')
     print('\n[us29] List: Deceased Individuals')
     print(us29)
-    
+
+
+
 
 def main(fileName, GEDCOM_dict):
 
