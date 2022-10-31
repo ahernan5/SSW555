@@ -75,12 +75,27 @@ def displayErrors(fileName, GEDCOM_dict):
 
     us29 = ahUserStories.us29(GEDCOM_dict)
     with open(fileName[:-4] + '_output.txt', 'a+') as output:
-        output.write("[us29] - Error: Deceased Individuals\n")
+        output.write("[us29] - List: Deceased Individuals\n")
         output.write(us29.get_string(
-            title="[us29] - Error: Deceased Individuals")+'\n\n')
+            title="[us29] - List: Deceased Individuals")+'\n\n')
     print('\n[us29] List: Deceased Individuals')
     print(us29)
 
+    us31 = ahUserStories.us31(GEDCOM_dict)
+    with open(fileName[:-4] + '_output.txt', 'a+') as output:
+        output.write("[us31] - List: Living Single\n")
+        output.write(us31.get_string(
+            title="[us31] - List: Living Single")+'\n\n')
+    print('\n[us31] List: Living Single Over 30')
+    print(us31)
+
+    us32 = ahUserStories.us32(GEDCOM_dict)
+    with open(fileName[:-4] + '_output.txt', 'a+') as output:
+        output.write("[us32] - List: Multiple Births\n")
+        output.write(us32.get_string(
+            title="[us32] - List: Multiple Births")+'\n\n')
+    print('\n[us32] List: Multiple Births')
+    print(us32)
 
 
 
