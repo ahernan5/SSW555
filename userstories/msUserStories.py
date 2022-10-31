@@ -79,7 +79,6 @@ def us42(date):
 
 
 def us30(GEDCOM_dict):
-
     livingMarriedTable = prettytable.PrettyTable()
     livingMarriedTable.field_names = ['ID', 'Name']
 
