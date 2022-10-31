@@ -15,6 +15,7 @@ python 0_main.py {GEDCOM filename}
 
 python 0_main.py TestFileWithErrors.ged
 
-* To Test user stories 35 and 36 run:
+* To Test the program using the unittests, run the following command and make sure you are in the unit test directory :
 
-python 0_main.py TESTCOM.ged
+
+python allTests.py
