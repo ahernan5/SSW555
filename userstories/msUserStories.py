@@ -1,5 +1,8 @@
 import datetime
 import prettytable
+from natsort import natsorted
+
+# User stories 35, 36, 41, 42, 30, 39
 
 # __________________Sprint 1__________________
 
@@ -69,3 +72,55 @@ def us42(date):
         return 'N/A'
 
     return date
+
+# __________________Sprint 3__________________
+
+# List all living married people in a GEDCOM file
+
+
+def us30(GEDCOM_dict):
+    livingMarriedTable = prettytable.PrettyTable()
+    livingMarriedTable.field_names = ['ID', 'Name']
+
+    individualData = GEDCOM_dict['individualData']
+    familyData = GEDCOM_dict['familyData']
+    idListSorted = natsorted(individualData.keys())
+
+    for id in idListSorted:
+        if (individualData[id]['ALIVE'] == 'True'):
+            if (individualData[id]['FAMS'] == 'N/A'):
+                continue
+            else:
+                fams = individualData[id]['FAMS']
+                for famId in fams:
+                    if (familyData[famId]['DIV'] == 'N/A'):
+                        livingMarriedTable.add_row(
+                            [id, individualData[id]['NAME']])
+                    else:
+                        continue
+        else:
+            continue
+
+    return livingMarriedTable
+
+
+# List all living couples in a GEDCOM file whose marriage anniversaries occur in the next 30 days
+def us39(GEDCOM_dict):
+
+    upcomingAnniversariesTable = prettytable.PrettyTable()
+    upcomingAnniversariesTable.field_names = [
+        "Family ID", "Husband", "Wife", "Marriage Date"]
+
+    for key, value in GEDCOM_dict['familyData'].items():
+        if (value['MARR'] and value['MARR'] != 'N/A'):
+            marriagedate = datetime.datetime.strptime(
+                " ".join(value['MARR'].split('-')), '%Y %m %d')
+            marriagedate = marriagedate.replace(year=2022)
+            today = datetime.datetime.now()
+
+            if(marriagedate <= today + datetime.timedelta(30)) and marriagedate >= today:
+                row = [key, value['HUSB_NAME'],
+                       value['WIFE_NAME'], value['MARR']]
+                upcomingAnniversariesTable.add_row(row)
+
+    return upcomingAnniversariesTable

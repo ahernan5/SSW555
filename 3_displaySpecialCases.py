@@ -12,6 +12,7 @@ from prettytable import PrettyTable
 from userstories import ahUserStories, fdUserStories, msUserStories, shUserStories
 
 # Special Cases:
+# User Stories: 35, 36, 30, 39
 
 
 def displaySpecialCases(fileName, GEDCOM_dict):
@@ -33,6 +34,22 @@ def displaySpecialCases(fileName, GEDCOM_dict):
             title="[us36] - Death Within the Past 30 Days")+'\n\n')
     print('\n[us36] Death Within the Past 30 Days')
     print(us36)
+
+    us30 = msUserStories.us30(GEDCOM_dict)
+    with open(outputFile, 'a+') as output:
+        output.write("[us30] - Living Married People\n")
+        output.write(us30.get_string(
+            title="[us30] - Living Married People")+'\n\n')
+    print('\n[us30] Living Married People')
+    print(us30)
+
+    us39 = msUserStories.us39(GEDCOM_dict)
+    with open(outputFile, 'a+') as output:
+        output.write("[us39] - List Upcoming Anniversaries\n")
+        output.write(us39.get_string(
+            title="[us39] - List Upcoming Anniversaries")+'\n\n')
+    print('\n[us39] List Upcoming Anniversaries in the next 30 days')
+    print(us39)
 
     return
 
