@@ -19,3 +19,6 @@ python 0_main.py TestFileWithErrors.ged
 
 
 python allTests.py
+
+Test Files are:
+TESTCOM.ged and M1B6.ged
