@@ -87,3 +87,52 @@ def us29(GEDCOM_dict):
             deceasedTable.add_row(row)
     
     return deceasedTable
+
+
+# __________________Sprint 3__________________
+
+# List all living people over 30 who have never been married in a GEDCOM file 
+def us31(GEDCOM_dict):
+        
+    livingSingleTable = PrettyTable()
+    livingSingleTable.field_names = ['ID', 'Name', 'Age']
+        
+    for key, value in GEDCOM_dict['individualData'].items():
+        if (value['DEAT'] == 'N/A'):
+            if (value['BIRT'] != 'N/A'):
+                birthdate = datetime.datetime.strptime(
+                    " ".join(value['BIRT'].split('-')), '%Y %m %d')
+                today = datetime.datetime.today()
+                age = today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.day))
+                if (age >= 30 and value['FAMS'] == 'N/A'):
+                    row = [key, value['NAME'], age]
+                    livingSingleTable.add_row(row)
+        
+    return livingSingleTable
+
+
+# List all multiple births in a GEDCOM file
+def us32(GEDCOM_dict):
+        
+        multipleBirthsTable = PrettyTable()
+        multipleBirthsTable.field_names = ['ID', 'Name', 'Birthday', 'Wife ID', 'Wife Name']
+        
+        for key, value in GEDCOM_dict['individualData'].items():
+            if (value['BIRT'] != 'N/A'):
+                for key2, value2 in GEDCOM_dict['individualData'].items():
+                    if (key != key2 and value['BIRT'] == value2['BIRT'] and value['FAMC'] == value2['FAMC']):
+                        row = [key, value['NAME'], value['BIRT'], value['FAMC'], GEDCOM_dict['familyData'][value['FAMC']]['WIFE_NAME']]
+                        multipleBirthsTable.add_row(row)
+        
+        return multipleBirthsTable
+
+   
+        
+        
+   
+
+
+        
+ 
+        
+  
