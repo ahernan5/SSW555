@@ -237,35 +237,42 @@ def M2B3(GedcomFile):
         if len(c) == 7:
             c.append('NA')
 
+    #BAD SMELLS:
+    #Changed the variable name x to family to try and make it more clear with what the variable x stood for in both user story 04 and 05
+    #Combined US10 and US11 to try and reduce the amount of repeated code
+
     #User Story - US04
-    for x in famStorage:
-        if len(x) > 2 and x[2] != 'NA' and 'Married' not in x[1]:
-            marDate = x[1][:5]+toMonths(x[1][5:8])+x[1][8:]
-            if formatDate(marDate) > formatDate(x[2]):
-                errors.append(["FAMILY", x[0], "US04", "Marriage date after divorce date"])
+    for family in famStorage:
+        if len(family) > 2 and family[2] != 'NA' and 'Married' not in family[1]:
+            marDate = family[1][:5]+toMonths(family[1][5:8])+family[1][8:]
+            if formatDate(marDate) > formatDate(family[2]):
+                errors.append(["FAMILY", family[0], "US04", "Marriage date after divorce date"])
 
     #User Story - US05
-    for x in famStorage[1:]:
-        if len(x) > 5:
-            marDate = x[1][:5]+toMonths(x[1][5:8])+x[1][8:]
-            husbID = x[3]
-            wifeID = x[5]
+    for family in famStorage[1:]:
+        if len(family) > 5:
+            marDate = family[1][:5]+toMonths(family[1][5:8])+family[1][8:]
+            husbID = family[3]
+            wifeID = family[5]
         for y in indiStorage[1:]:
             if y[6] != 'NA':
                 deathDate = y[6][:5]+toMonths(y[6][5:8])+y[6][8:]
             if husbID == y[0]:
                 if y[5] == 'FALSE' and formatDate(marDate) > formatDate(deathDate):
-                    errors.append(["FAMILY", x[0], "US04", "Marriage date after death date"])
+                    errors.append(["FAMILY", family[0], "US04", "Marriage date after death date"])
             if wifeID == y[0]:
                 if y[5] == 'FALSE' and formatDate(marDate) > formatDate(deathDate):
-                    errors.append(["FAMILY", x[0], "US04", "Marriage date after death date"])
+                    errors.append(["FAMILY", family[0], "US04", "Marriage date after death date"])
 
-    #User Story - US10
+    #User Story - US10 and US011
+    bigamy = []
     for x in famStorage[1:]:
         if len(x) > 5:
             marDate = x[1][:5]+toMonths(x[1][5:8])+x[1][8:]
             husbID = x[3]
             wifeID = x[5]
+            if 'NA' not in x[2]:
+                bigamy.append([x[0],x[1],x[2]])
         for y in indiStorage[1:]:
             if husbID == y[0]:
                 if int(marDate[:4]) - int(y[3][:4]) < 14:
@@ -273,12 +280,6 @@ def M2B3(GedcomFile):
             if wifeID == y[0]:
                 if int(marDate[:4]) - int(y[3][:4]) < 14:
                     errors.append(["FAMILY", x[0], "US10", "Marriage before 14"])
-
-    #User Story - US11
-    bigamy = []
-    for x in famStorage[1:]:
-        if len(x) > 5 and 'NA' not in x[2]:
-            bigamy.append([x[0],x[1],x[2]])
     for y in bigamy:
         try:
             if y[0] in bigamy[bigamy.index(y)+1:][0]:
@@ -286,7 +287,7 @@ def M2B3(GedcomFile):
                     errors.append(["FAMILY", x[0], "US10", "Bigamy"])
         except:
             #if list index is out of range
-            pass
+            pass    
         
         
 
