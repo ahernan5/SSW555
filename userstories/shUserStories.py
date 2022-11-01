@@ -73,11 +73,11 @@ def us33(GEDCOM_dict):
                     age = date.today() - datetime.datetime.strptime(individualData[kids]['BIRT'], '%Y-%m-%d').date()
                     if age.days/365 < 18:
                         kidsUnder18.append(kids)
-                        listOrphans.add_row(key,kidsUnder18)
+                        listOrphans.add_row([key,kidsUnder18])
 
     return listOrphans
 
-us33(Gedcom_dict)
+#us33(Gedcom_dict)
 
 #list recent survivors
 
@@ -89,19 +89,19 @@ def us37(GEDCOM_dict):
     familyData = GEDCOM_dict['familyData']
     individualData = GEDCOM_dict['individualData']
 
-    print(familyData)
-    print('============================')
-    print(individualData)
-
     for key, value in individualData.items():
         if value['DEAT'] != 'N/A':
             recent = date.today() - datetime.datetime.strptime(value['DEAT'], '%Y-%m-%d').date()
             
             if recent.days < 30:
                 for famKey, famValue in familyData.items():
-                    if key in famValue['HUSB'] or key in famValue['WIFE'] or key in famValue['CHIL']:
-                        recentSurvivors.add_row([famKey, key, value['DEAT'], [famValue['HUSB'].replace(key,''), famValue['WIFE'].replace(key,''), famValue['CHIL'].pop(famValue['CHIL'].index(key))]])
+                    if key in famValue['HUSB']:
+                        recentSurvivors.add_row([famKey, key, value['DEAT'], [famValue['WIFE'], famValue['CHIL']]])
+                    elif key in famValue['WIFE']:
+                        recentSurvivors.add_row([famKey, key, value['DEAT'], [famValue['HUSB'], famValue['CHIL']]])
+                    else:
+                        recentSurvivors.add_row([famKey, key, value['DEAT'], [famValue['HUSB'], famValue['WIFE'], famValue['CHIL'].pop(famValue['CHIL'].index(key))]])
 
     return recentSurvivors
 
-print(us37(Gedcom_dict))
+#print(us37(Gedcom_dict))
