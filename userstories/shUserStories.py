@@ -77,8 +77,6 @@ def us33(GEDCOM_dict):
 
     return listOrphans
 
-#us33(Gedcom_dict)
-
 #list recent survivors
 
 def us37(GEDCOM_dict):
@@ -103,5 +101,3 @@ def us37(GEDCOM_dict):
                         recentSurvivors.add_row([famKey, key, value['DEAT'], [famValue['HUSB'], famValue['WIFE'], famValue['CHIL'].pop(famValue['CHIL'].index(key))]])
 
     return recentSurvivors
-
-#print(us37(Gedcom_dict))
