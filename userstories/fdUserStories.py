@@ -131,13 +131,17 @@ def us38(GEDCOM_dict):
     upcomingBirthdays.field_names = ['ID', 'Name', 'Birthday']
 
     individualData = GEDCOM_dict['individualData']
-    today = datetime.datetime.today()
+    today = datetime.datetime.now()
     for key, value in individualData.items():
-        if (value['DEAT'] and value['DEAT'] == 'N/A'):
-            if (value['BIRT'] and value['BIRT'] != 'N/A'):
+        if ('DEAT' not in value or value['DEAT'] == 'N/A'):
+            print("Death not here")
+            if ('BIRT' in value and value['BIRT'] != 'N/A'):
                 birthdate = datetime.datetime.strptime(
                     " ".join(value['BIRT'].split('-')), '%Y %m %d')
-                if(birthdate >= today and birthdate <= today + datetime.timedelta(30)):
+                birthdate = birthdate.replace(year=2022)
+                print(birthdate)
+                if(birthdate <= today + datetime.timedelta(30)) and birthdate >= today:
+                    print("Found 30 days")
                     row = [key, value["NAME"], value["BIRT"]]
                     upcomingBirthdays.add_row(row)
 
