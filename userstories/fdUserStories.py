@@ -143,30 +143,16 @@ def us38(GEDCOM_dict):
 
     return upcomingBirthdays
 
-# Marriage after 14
-def us10(GEDCOM_dict):
-    invalidMarriageDate = PrettyTable()
-    invalidMarriageDate.field_names = ['FAM_ID', 'Marriage Date', 'Age']
+# Not more than 15 siblings in a family
+def us15(GEDCOM_dict):
+    invalidFamilySize = PrettyTable()
+    invalidFamilySize.field_names = ['FAM_ID', 'Number of Children']
 
     familyData = GEDCOM_dict['familyData']
-    individualData = GEDCOM_dict['individualData']
     
     for key, value in familyData.items():
-       if (value['MARR'] != 'N/A'):
-            husbandBirthday = datetime.datetime.strptime(
-                    " ".join(individualData[value['HUSB']]['BIRT'].split('-')), '%Y %m %d')
-            wifeBirthday = datetime.datetime.strptime(
-                    " ".join(individualData[value['WIFE']]['BIRT'].split('-')), '%Y %m %d')
+       if (value['CHIL'] and len(value['CHIL']) > 15):
+           row = [key, len(value['CHIL'])]
+           invalidFamilySize.add_row(row)
 
-            marriageDate = datetime.datetime.strptime(
-                    " ".join(["MARR"].split('-')), '%Y %m %d')
-            
-            if((marriageDate - wifeBirthday).days / 365 < 14):
-                row = [key, marriageDate, value["BIRT"], (marriageDate - wifeBirthday).days / 365]
-                invalidMarriageDate.add_row(row)
-
-            if((marriageDate - husbandBirthday).days / 365 < 14):
-                row = [key, marriageDate, value["BIRT"], (marriageDate - husbandBirthday).days / 365]
-                invalidMarriageDate.add_row(row)
-
-    return invalidMarriageDate
+    return invalidFamilySize

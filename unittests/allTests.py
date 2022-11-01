@@ -8,7 +8,7 @@ sys.path.append(os.path.abspath('../userstories'))
 import unittest
 from msUserStories import us41, us42 , us30 , us39
 from ahUserStories import us02, us03, us23, us29, us31, us32  
-from fdUserStories import us38
+from fdUserStories import us15, us38
 from prettytable import PrettyTable
 
 
@@ -187,18 +187,16 @@ class Tests(unittest.TestCase):
         output = testTable
         self.assertEqual(us38(input).get_string(), output.get_string())
 
-    def test_us10(self):
-        input = {'individualData': {
-            '@I2@': {'NAME': 'Olivia', 'BIRT': '2015-03-07', 'FAMC': '@F1@'}, 
-            '@I3@': {'NAME': 'Pete', 'BIRT': '2009-03-07', 'FAMC': '@F1@'}
-            },
-            'familyData': {'@F1@': {'WIFE_NAME': 'Olivia', 'HUSB_NAME': 'Pete', 'MARR': '2016-03-07'}}}
+    def test_us15(self):
+        input = {'individualData': {'@I2@': {'NAME': 'Jose', 'BIRT': '2009-03-07', 'FAMC': '@F1@'}, 
+            '@I3@': {'NAME': 'Pete', 'BIRT': '2009-03-07', 'FAMC': '@F1@'}},
+            'familyData': {'@F1@': {'CHIL': ['@I2@', '@I3@', '@I2@', '@I3@', '@I2@', '@I3@', '@I2@', '@I3@', '@I2@', '@I3@', '@I2@', '@I3@','@I2@', '@I3@', '@I2@', '@I3@'], 'WIFE_NAME': 'Olivia'}}}
 
         testTable = PrettyTable()
-        testTable.field_names = ['FAM_ID', 'Marriage Date', 'Age']
-        testTable.add_row(['@F1@', '2016-03-11', '0.82'])
+        testTable.field_names = ['FAM_ID', 'Number of Children']
+        testTable.add_row(['@F1@', 16])
 
         output = testTable
-        self.assertEqual(us32(input).get_string(), output.get_string())
+        self.assertEqual(us15(input).get_string(), output.get_string())
 
 unittest.main()
