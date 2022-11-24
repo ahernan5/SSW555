@@ -8,6 +8,7 @@ import json
 from prettytable import PrettyTable
 from natsort import natsorted
 
+from userstories import msUserStories
 
 def displayIndividualData(individualData):
 
@@ -28,7 +29,7 @@ def displayIndividualData(individualData):
 
     indiDataTable = PrettyTable()
     indiDataTable.field_names = [
-        "ID", "Name", "Gender", "Birthday", "Alive", "Death", "Child", "Spouse"]
+        "ID", "Name", "Gender", "Age", "Birthday", "Alive", "Death", "Child", "Spouse"]
 
     idListSorted = natsorted(individualData.keys())
 
@@ -73,8 +74,11 @@ def displayIndividualData(individualData):
             alive = 'True'
             death = 'N/A'
 
+        age = msUserStories.us27(birthday, death, alive)
+        indiData['AGE'] = age
+
         indiDataTable.add_row(
-            [id, name, gender, birthday, alive, death, child, spouse])
+            [id, name, gender, age,  birthday, alive, death, child, spouse])
 
     return indiDataTable
 
@@ -117,7 +121,7 @@ def main(fileName, GEDCOM_dict):
 
             return individualDataTable
         else:
-            raise 'Empty Input'
+            raise 'No Input'
 
     return
 

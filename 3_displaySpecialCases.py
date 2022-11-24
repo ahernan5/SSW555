@@ -51,6 +51,13 @@ def displaySpecialCases(fileName, GEDCOM_dict):
     print('\n[us39] List Upcoming Anniversaries in the next 30 days')
     print(us39)
 
+    us34 = msUserStories.us34(GEDCOM_dict)
+    with open(outputFile, 'a+') as output:
+        output.write("[us34] - List Large Age Differences\n")
+        output.write(us34.get_string(title="[us34] - List Large Age Differences")+'\n\n')
+    print('\n[us34] List Large Age Differences')
+    print( us34 )
+
     return
 
 

@@ -9,8 +9,9 @@ import json
 
 #marriage before divorce
 
-GedcomFile = open(os.getcwd() + '/TESTCOM_dict.json', 'r')
-Gedcom_dict = json.load(GedcomFile)
+# Commented the next 2 lines out cause they broke the code with the main command 
+# GedcomFile = open(os.getcwd() + '/TESTCOM_dict.json', 'r')
+# Gedcom_dict = json.load(GedcomFile)
 
 def us04(GEDCOM_dict):
 
@@ -39,7 +40,7 @@ def us04(GEDCOM_dict):
         except:
             #list index not out of range, continue
             pass
-    
+
     return marriageBeforeDiv
 
 #marriage after death
@@ -111,7 +112,7 @@ def us11(GEDCOM_dict):
         except:
             #list index not out of range, continue
             pass
-    
+
     return marriageBeforeDiv
 
 
@@ -160,7 +161,7 @@ def us37(GEDCOM_dict):
     for key, value in individualData.items():
         if value['DEAT'] != 'N/A':
             recent = date.today() - datetime.datetime.strptime(value['DEAT'], '%Y-%m-%d').date()
-            
+
             if recent.days < 30:
                 for famKey, famValue in familyData.items():
                     if key in famValue['HUSB']:
