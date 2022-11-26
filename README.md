@@ -21,4 +21,4 @@ python 0_main.py TestFileWithErrors.ged
 python allTests.py
 
 Test GED Files are:
-TESTCOM.ged and M1B6.ged
+TESTCOM.ged, M1B6.ged, TestFileWithErrors.ged, us14.ged, and us24.ged
