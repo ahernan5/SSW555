@@ -7,7 +7,7 @@ sys.path.append(os.path.abspath('../userstories'))
 
 import unittest
 from msUserStories import us41, us42 , us30 , us39
-from ahUserStories import us02, us03, us23, us29, us31, us32  
+from ahUserStories import us02, us03, us23, us29, us31, us32, us14   
 from fdUserStories import us15, us38
 from prettytable import PrettyTable
 
@@ -92,7 +92,53 @@ class Tests(unittest.TestCase):
         output = testTable
         self.assertEqual(us32(input).get_string(), output.get_string())
 
+    def test_us14(self):
+        input = {'individualData': {'@I1@': {'NAME': 'Jade', 'BIRT': '2009-03-07', 'FAMC': '@F1@'},
+            '@I2@': {'NAME': 'Jose', 'BIRT': '2009-03-07', 'FAMC': '@F1@'}, 
+            '@I3@': {'NAME': 'Pete', 'BIRT': '2009-03-07', 'FAMC': '@F1@'},
+            '@I4@': {'NAME': 'Kaitlyn', 'BIRT': '2009-03-07', 'FAMC': '@F1@'},
+            '@I5@': {'NAME': 'Bryan', 'BIRT': '2009-03-07', 'FAMC': '@F1@'},
+            '@I6@': {'NAME': 'Katie', 'BIRT': '2009-03-07', 'FAMC': '@F1@'}},
+            'familyData': {'@F1@': {'CHIL': ['@I1@', '@I2@', '@I3@', '@I4@', '@I5@', '@I6@'], 'WIFE_NAME': 'Olivia'}}}
 
+        testTable = PrettyTable()
+        testTable.field_names = ['ID', 'Name', 'Birthday', 'Family ID', 'Wife Name']
+        testTable.add_row(['@I1@', 'Jade', '2009-03-07', '@F1@', 'Olivia'])
+        testTable.add_row(['@I1@', 'Jade', '2009-03-07', '@F1@', 'Olivia'])
+        testTable.add_row(['@I1@', 'Jade', '2009-03-07', '@F1@', 'Olivia'])
+        testTable.add_row(['@I1@', 'Jade', '2009-03-07', '@F1@', 'Olivia'])
+        testTable.add_row(['@I1@', 'Jade', '2009-03-07', '@F1@', 'Olivia'])
+        testTable.add_row(['@I2@', 'Jose', '2009-03-07', '@F1@', 'Olivia'])
+        testTable.add_row(['@I2@', 'Jose', '2009-03-07', '@F1@', 'Olivia'])
+        testTable.add_row(['@I2@', 'Jose', '2009-03-07', '@F1@', 'Olivia'])
+        testTable.add_row(['@I2@', 'Jose', '2009-03-07', '@F1@', 'Olivia'])
+        testTable.add_row(['@I2@', 'Jose', '2009-03-07', '@F1@', 'Olivia'])
+        testTable.add_row(['@I3@', 'Pete', '2009-03-07', '@F1@', 'Olivia'])
+        testTable.add_row(['@I3@', 'Pete', '2009-03-07', '@F1@', 'Olivia'])
+        testTable.add_row(['@I3@', 'Pete', '2009-03-07', '@F1@', 'Olivia'])
+        testTable.add_row(['@I3@', 'Pete', '2009-03-07', '@F1@', 'Olivia'])
+        testTable.add_row(['@I3@', 'Pete', '2009-03-07', '@F1@', 'Olivia'])
+        testTable.add_row(['@I4@', 'Kaitlyn', '2009-03-07', '@F1@', 'Olivia'])
+        testTable.add_row(['@I4@', 'Kaitlyn', '2009-03-07', '@F1@', 'Olivia'])
+        testTable.add_row(['@I4@', 'Kaitlyn', '2009-03-07', '@F1@', 'Olivia'])
+        testTable.add_row(['@I4@', 'Kaitlyn', '2009-03-07', '@F1@', 'Olivia'])
+        testTable.add_row(['@I4@', 'Kaitlyn', '2009-03-07', '@F1@', 'Olivia'])
+        testTable.add_row(['@I5@', 'Bryan', '2009-03-07', '@F1@', 'Olivia'])
+        testTable.add_row(['@I5@', 'Bryan', '2009-03-07', '@F1@', 'Olivia'])
+        testTable.add_row(['@I5@', 'Bryan', '2009-03-07', '@F1@', 'Olivia'])
+        testTable.add_row(['@I5@', 'Bryan', '2009-03-07', '@F1@', 'Olivia'])
+        testTable.add_row(['@I5@', 'Bryan', '2009-03-07', '@F1@', 'Olivia'])
+        testTable.add_row(['@I6@', 'Katie', '2009-03-07', '@F1@', 'Olivia'])
+        testTable.add_row(['@I6@', 'Katie', '2009-03-07', '@F1@', 'Olivia'])
+        testTable.add_row(['@I6@', 'Katie', '2009-03-07', '@F1@', 'Olivia'])
+        testTable.add_row(['@I6@', 'Katie', '2009-03-07', '@F1@', 'Olivia'])
+        testTable.add_row(['@I6@', 'Katie', '2009-03-07', '@F1@', 'Olivia'])
+        
+        output = testTable
+        self.assertEqual(us14(input).get_string(), output.get_string())
+
+
+   
 # Mehrab User Stories Tests
 
     def test_us41(self):

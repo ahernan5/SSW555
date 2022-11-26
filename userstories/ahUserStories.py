@@ -1,5 +1,6 @@
 import datetime
 from prettytable import PrettyTable
+from dateutil.relativedelta import relativedelta
 
 
 # __________________Sprint 1__________________
@@ -126,13 +127,39 @@ def us32(GEDCOM_dict):
         
     return multipleBirthsTable
 
-   
-        
-        
-   
 
+# __________________Sprint 4__________________
+        
+# No more than five siblings should be born at the same time
+def us14(GEDCOM_dict):
+            
+    multipleSiblingBirthsTable = PrettyTable()
+    multipleSiblingBirthsTable.field_names = ['ID', 'Name', 'Birthday', 'Family ID', 'Wife Name']
+            
+    for key, value in GEDCOM_dict['individualData'].items():
+        if (value['BIRT'] != 'N/A'):
+            for key2, value2 in GEDCOM_dict['individualData'].items():
+                if (key != key2 and value['BIRT'] == value2['BIRT'] and value['FAMC'] == value2['FAMC']):
+                    row = [key, value['NAME'], value['BIRT'], value['FAMC'], GEDCOM_dict['familyData'][value['FAMC']]['WIFE_NAME']] 
+                    if (len(GEDCOM_dict['familyData'][value['FAMC']]['CHIL']) > 5):
+                        multipleSiblingBirthsTable.add_row(row)                         
+                            
+    return multipleSiblingBirthsTable
+            
 
-        
- 
-        
-  
+# No more than one family with the same spouses by name and the same marriage date should appear in a GEDCOM file
+def us24(GEDCOM_dict):
+            
+        uniqueFamilyTable = PrettyTable()
+        uniqueFamilyTable.field_names = ['ID', 'Husband Name', 'Wife Name', 'Marriage Date']
+            
+        for key, value in GEDCOM_dict['familyData'].items():
+            for key2, value2 in GEDCOM_dict['familyData'].items():
+                if (key != key2 and value['HUSB_NAME'] == value2['HUSB_NAME'] and value['WIFE_NAME'] == value2['WIFE_NAME'] and value['MARR'] == value2['MARR']):
+                    row = [key, value['HUSB_NAME'], value['WIFE_NAME'], value['MARR']]
+                    uniqueFamilyTable.add_row(row)
+            
+        return uniqueFamilyTable
+
+                
+       

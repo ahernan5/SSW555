@@ -56,6 +56,14 @@ def displayErrors(fileName, GEDCOM_dict):
             title="[us07] - Error: Age is Greater Than 150 Years")+'\n\n')
     print('\n[us07] Error: Age is Greater Than 150 Years')
     print(us07)
+    
+    us14 = ahUserStories.us14(GEDCOM_dict)
+    with open(fileName[:-4] + '_output.txt', 'a+') as output:
+        output.write("[us14] - Error: More than 5 siblings born at the same time\n")
+        output.write(us14.get_string(
+            title="[us14] - Error: More than 5 siblings born at the same time")+'\n\n')
+    print('\n[us14] Error: More than 5 siblings born at the same time')
+    print(us14)
 
     us21 = fdUserStories.us21(GEDCOM_dict)
     with open(fileName[:-4] + '_output.txt', 'a+') as output:
@@ -72,6 +80,14 @@ def displayErrors(fileName, GEDCOM_dict):
             title="[us23] - Error: Name/Birthday Combo Not Unique")+'\n\n')
     print('\n[us23] Error: Name/Birthday Combo Not Unique')
     print(us23)
+
+    us24 = ahUserStories.us24(GEDCOM_dict)
+    with open(fileName[:-4] + '_output.txt', 'a+') as output:
+        output.write("[us24] - Error: Unique Families by Spouses\n")
+        output.write(us24.get_string(
+            title="[us24] - Error: Unique Families by Spouses")+'\n\n')
+    print('\n[us24] Error: Unique Families by Spouses')
+    print(us24)
 
     us29 = ahUserStories.us29(GEDCOM_dict)
     with open(fileName[:-4] + '_output.txt', 'a+') as output:
