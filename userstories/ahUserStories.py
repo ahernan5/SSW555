@@ -1,6 +1,5 @@
 import datetime
 from prettytable import PrettyTable
-from dateutil.relativedelta import relativedelta
 
 
 # __________________Sprint 1__________________
