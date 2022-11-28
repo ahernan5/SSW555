@@ -115,7 +115,7 @@ def us31(GEDCOM_dict):
 def us32(GEDCOM_dict):
         
     multipleBirthsTable = PrettyTable()
-    multipleBirthsTable.field_names = ['ID', 'Name', 'Birthday', 'Wife ID', 'Wife Name']
+    multipleBirthsTable.field_names = ['ID', 'Name', 'Birthday', 'Family ID', 'Wife Name']
         
     for key, value in GEDCOM_dict['individualData'].items():
         if (value['BIRT'] != 'N/A'):

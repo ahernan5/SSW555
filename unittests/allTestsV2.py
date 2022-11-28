@@ -6,7 +6,8 @@ sys.path.append(os.path.abspath('C:/Users/user/Documents/SSW555Group/SSW555/user
 
 import unittest
 from msUserStories import us41, us42 , us30 , us39
-from ahUserStories import us02, us03
+from ahUserStories import us02, us03, us23, us29, us31, us32  
+from fdUserStories import us38
 from shUserStories import us04, us33, us37
 from prettytable import PrettyTable
 
@@ -14,9 +15,12 @@ from prettytable import PrettyTable
 
 class Tests(unittest.TestCase):
 
+# Alyssa User Stories Tests 
+
     def test_us02(self):
-        input = {'individualData': {'@I1@': {'NAME': 'HUSB', 'BIRT': '2018-03-07'}, '@I2@': {'NAME': 'WIFE', 'BIRT': '2018-03-07'}},
-                 'familyData': {'@F1@': {'HUSB': '@I1@', 'HUSB_NAME': 'HUSB', 'WIFE': '@I2@', 'WIFE_NAME': 'WIFE', 'MARR': '2018-03-06', 'MARRLine': '18'}}}
+        input = {'individualData': {'@I1@': {'NAME': 'HUSB', 'BIRT': '2018-03-07'}, 
+            '@I2@': {'NAME': 'WIFE', 'BIRT': '2018-03-07'}},
+            'familyData': {'@F1@': {'HUSB': '@I1@', 'HUSB_NAME': 'HUSB', 'WIFE': '@I2@', 'WIFE_NAME': 'WIFE', 'MARR': '2018-03-06', 'MARRLine': '18'}}}
 
         testTable = PrettyTable()
         testTable.field_names = ['FAM ID', 'Married', 'Husband ID', 'Husband Name',
@@ -26,6 +30,67 @@ class Tests(unittest.TestCase):
 
         output = testTable
         self.assertEqual(us02(input).get_string(), output.get_string())
+
+    def test_us03(self):
+        input = {'individualData': {'@I1@': {'NAME': 'Jose', 'BIRT': '2018-03-07', 'DEAT': '2017-05-04'}, 
+            '@I2@': {'NAME': 'Pete', 'BIRT': '2016-07-03', 'DEAT': '2017-03-03'}}}
+
+        testTable = PrettyTable()
+        testTable.field_names = ['ID', 'Name', 'Birthday', 'Death'] 
+        testTable.add_row(['@I1@', 'Jose', '2018-03-07', '2017-05-04'])
+
+        output = testTable
+        self.assertEqual(us03(input).get_string(), output.get_string())
+
+    def test_us23(self):
+        input = {'individualData': {'@I1@': {'NAME': 'Jose', 'BIRT': '2018-03-07'}, 
+            '@I2@': {'NAME': 'Jose', 'BIRT': '2018-03-07'}}}
+
+        testTable = PrettyTable()
+        testTable.field_names = ['ID', 'Name', 'Birthday']
+        testTable.add_row(['@I1@', 'Jose', '2018-03-07'])
+        testTable.add_row(['@I2@', 'Jose', '2018-03-07'])
+
+        output = testTable
+        self.assertEqual(us23(input).get_string(), output.get_string())
+
+    def test_us29(self):
+        input = {'individualData': {'@I1@': {'NAME': 'Jose', 'BIRT': '1985-03-07', 'DEAT': '2018-05-04'}, 
+            '@I2@': {'NAME': 'Pete', 'BIRT': '1965-07-03', 'DEAT': '2017-03-03'}, 
+            '@I3@': {'NAME': 'Olivia', 'BIRT': '2009-07-03', 'DEAT': 'N/A'}}}
+
+        testTable = PrettyTable()
+        testTable.field_names = ['ID', 'Name', 'Birthday', 'Death']
+        testTable.add_row(['@I1@', 'Jose', '1985-03-07', '2018-05-04'])
+        testTable.add_row(['@I2@', 'Pete', '1965-07-03', '2017-03-03'])
+
+        output = testTable
+        self.assertEqual(us29(input).get_string(), output.get_string())  
+
+    def test_us31(self):
+        input = {'individualData': {'@I1@': {'NAME': 'Jose', 'BIRT': '1985-03-07', 'DEAT': 'N/A', 'FAMS': 'N/A'}, 
+            '@I2@': {'NAME': 'Pete', 'BIRT': '1965-07-03', 'DEAT': '2017-03-03', 'FAMS': 'N/A'}, 
+            '@I3@': {'NAME': 'Olivia', 'BIRT': '2009-07-03', 'DEAT': 'N/A', 'FAMS': 'N/A'}}}
+
+        testTable = PrettyTable()
+        testTable.field_names = ['ID', 'Name', 'Age']
+        testTable.add_row(['@I1@', 'Jose', '37'])
+
+        output = testTable
+        self.assertEqual(us31(input).get_string(), output.get_string())
+
+    def test_us32(self):
+        input = {'individualData': {'@I2@': {'NAME': 'Jose', 'BIRT': '2009-03-07', 'FAMC': '@F1@'}, 
+            '@I3@': {'NAME': 'Pete', 'BIRT': '2009-03-07', 'FAMC': '@F1@'}},
+            'familyData': {'@F1@': {'CHIL': ['@I2@', '@I3@'], 'WIFE_NAME': 'Olivia'}}}
+
+        testTable = PrettyTable()
+        testTable.field_names = ['ID', 'Name', 'Birthday', 'Family ID', 'Wife Name']
+        testTable.add_row(['@I2@', 'Jose', '2009-03-07', '@F1@', 'Olivia'])
+        testTable.add_row(['@I3@', 'Pete', '2009-03-07', '@F1@', 'Olivia'])
+
+        output = testTable
+        self.assertEqual(us32(input).get_string(), output.get_string())
 
 
 # Mehrab User Stories Tests
@@ -109,6 +174,33 @@ class Tests(unittest.TestCase):
 
         self.assertEqual(us39(input).get_string(), output.get_string())
 
+# Frankie user stories
+
+    def test_us38(self):
+        input = {'individualData': {'@I1@': {'NAME': 'Bobby', 'BIRT': '2018-11-07'}, 
+            '@I2@': {'NAME': 'Tiffany', 'BIRT': '2018-03-07'}},
+            'familyData': {}}
+
+        testTable = PrettyTable()
+        testTable.field_names = ['ID', 'Name', 'Birthday']
+        testTable.add_row(['@I1@', 'Bobby', '2018-11-07'])
+
+        output = testTable
+        self.assertEqual(us38(input).get_string(), output.get_string())
+
+    def test_us10(self):
+        input = {'individualData': {
+            '@I2@': {'NAME': 'Olivia', 'BIRT': '2015-03-07', 'FAMC': '@F1@'}, 
+            '@I3@': {'NAME': 'Pete', 'BIRT': '2009-03-07', 'FAMC': '@F1@'}
+            },
+            'familyData': {'@F1@': {'WIFE_NAME': 'Olivia', 'HUSB_NAME': 'Pete', 'MARR': '2016-03-07'}}}
+
+        testTable = PrettyTable()
+        testTable.field_names = ['FAM_ID', 'Marriage Date', 'Age']
+        testTable.add_row(['@F1@', '2016-03-11', '0.82'])
+
+        output = testTable
+        self.assertEqual(us32(input).get_string(), output.get_string())
 
     #Austin User Story tests
 

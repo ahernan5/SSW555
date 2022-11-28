@@ -29,12 +29,11 @@ def us04(GEDCOM_dict):
             div_id.append([value['HUSB'],value['WIFE'],value['DIV']])
 
     for x in enumerate(div_id):
-        print(x[1][0])
-        print(div_id[x[0]+1:])
+        # print(x[1][0])
+        # print(div_id[x[0]+1:])
         try:
             if x[1][0] in div_id[x[0]+1:][0]:
                 #should test if marrigae is before or after div
-                print(".")
                 if familyData[x[1][3]]['MARR'] > x[1][2]:
                     marriageBeforeDiv.add_row([key, familyData[x[1][3]]['MARR'], x[1][2]])
         except:
@@ -43,7 +42,78 @@ def us04(GEDCOM_dict):
     
     return marriageBeforeDiv
 
-us04(Gedcom_dict)
+#marriage after death
+
+def us05(GEDCOM_dict):
+
+    marriageBeforeDeath = PrettyTable()
+    marriageBeforeDeath.field_names = ['FAM ID', 'Married', 'Death']
+
+    familyData = GEDCOM_dict['familyData']
+    individualData = GEDCOM_dict['individualData']
+
+    for key, value in familyData.items():
+        husbAndWife = []
+        husbAndWife.extend([value['HUSB'],value['WIFE'],value['MARR']])
+
+        for indKey, indValue in individualData.items():
+            if indKey == husbAndWife[0] or indKey == husbAndWife[1]:
+                if indValue['DEAT'] != 'N/A' and indValue['DEAT'] < value['MARR']:
+                    marriageBeforeDeath.add_row([key, value['MARR'],indValue['DEAT']])
+    return marriageBeforeDeath
+
+
+#Sprint 2
+def us10(GEDCOM_dict):
+
+    marriageBefore14 = PrettyTable()
+    marriageBefore14.field_names = ['FAM ID', 'Married', 'Birth']
+
+    familyData = GEDCOM_dict['familyData']
+    individualData = GEDCOM_dict['individualData']
+
+    for key, value in familyData.items():
+        husbAndWife = []
+        husbAndWife.extend([value['HUSB'],value['WIFE'],value['MARR']])
+
+        for indKey, indValue in individualData.items():
+            if indKey == husbAndWife[0] or indKey == husbAndWife[1]:
+                years = datetime.datetime.strptime(value['MARR'], '%Y-%m-%d').date() - datetime.datetime.strptime(indValue['BIRT'], '%Y-%m-%d').date()
+                if years.days/365 < 14:
+                    marriageBefore14.add_row([key, value['MARR'],indValue['BIRT']])
+
+#no bigamy (same as US04)
+
+def us11(GEDCOM_dict):
+
+    marriageBeforeDiv = PrettyTable()
+    marriageBeforeDiv.field_names = ['FAM ID', 'Married', 'Divorced']
+
+    familyData = GEDCOM_dict['familyData']
+    individualData = GEDCOM_dict['individualData']
+
+    div_id = []
+
+    for key, value in familyData.items():
+        if 'N/A' in value['DIV']:
+            continue
+        else:
+            div_id.append([value['HUSB'],value['WIFE'],value['DIV']])
+
+    for x in enumerate(div_id):
+        # print(x[1][0])
+        # print(div_id[x[0]+1:])
+        try:
+            if x[1][0] in div_id[x[0]+1:][0]:
+                #should test if marriage is before or after div
+                if familyData[x[1][3]]['MARR'] > x[1][2]:
+                    marriageBeforeDiv.add_row([key, familyData[x[1][3]]['MARR'], x[1][2]])
+        except:
+            #list index not out of range, continue
+            pass
+    
+    return marriageBeforeDiv
+
 
 #Sprint 3
 
