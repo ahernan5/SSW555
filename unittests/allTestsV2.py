@@ -2,15 +2,15 @@
 
 import sys
 import os
-# sys.path.append(os.path.abspath('C:/Users/user/Documents/SSW555Group/SSW555/userstories'))
+sys.path.append(os.path.abspath('C:/Users/user/Documents/SSW555Group/SSW555/userstories'))
 
-sys.path.append(os.path.abspath('../userstories'))
+# sys.path.append(os.path.abspath('../userstories'))
 
 import unittest
 from msUserStories import us41, us42 , us30 , us39 , us27 , us34
 from ahUserStories import us02, us03, us23, us29, us31, us32
 from fdUserStories import us38
-from shUserStories import us04, us33, us37
+from shUserStories import us04, us33, us37, us17, us18
 from prettytable import PrettyTable
 
 
@@ -222,22 +222,24 @@ class Tests(unittest.TestCase):
         output = testTable
         self.assertEqual(us38(input).get_string(), output.get_string())
 
-# Commented this out and tried fixing it but im not sure why it's failing - ms
+
+
+    #Austin User Story tests
+
+    # Commented this out and tried fixing it but im not sure why it's failing - ms
     # def test_us10(self):
     #     input = {'individualData': {
     #         '@I2@': {'NAME': 'Olivia', 'BIRT': '2015-03-07', 'FAMC': '@F1@'},
     #         '@I3@': {'NAME': 'Pete', 'BIRT': '2009-03-07', 'FAMC': '@F1@'}
     #         },
     #         'familyData': {'@F1@': {'WIFE_NAME': 'Olivia', 'HUSB_NAME': 'Pete', 'MARR': '2016-03-07'}}}
-    #
+    
     #     testTable = PrettyTable()
     #     testTable.field_names = ['FAM_ID', 'Marriage Date', 'Age']
     #     testTable.add_row(['@F1@', '2016-03-11', '0.82'])
-    #
+    
     #     output = testTable
     #     self.assertEqual(us32(input).get_string(), output.get_string())
-
-    #Austin User Story tests
 
     def test_us33(self):
         input = {'familyData': {'@F1@': {'MARR': '2017-11-10', 'HUSB': '@I1@', 'WIFE':'@I2@', 'CHIL': ['@I3@']}},
@@ -264,5 +266,28 @@ class Tests(unittest.TestCase):
 
         self.assertEqual(us37(input).get_string(), output.get_string())
 
+    def test_us17(self):
+        input = {'familyData': {'@F1@': {'MARR': '2017-11-10', 'HUSB': '@I1@', 'WIFE':'@I2@', 'CHIL': ['@I2@','@I4@']}}}
+
+        testTable = PrettyTable()
+        testTable.field_names = ['FAM ID', 'ID', 'MARRIED ID']
+        testTable.add_row(['@F1@', '@I1@', '@I2@'])
+
+        output = testTable
+
+        self.assertEqual(us17(input).get_string(), output.get_string())
+
+
+    def test_us18(self):
+        input = {'familyData': {'@F1@': {'MARR': '2017-11-10', 'HUSB': '@I3@', 'WIFE':'@I4@', 'CHIL': ['']},
+                                '@F2@': {'MARR': '2017-11-10', 'HUSB': '@I1@', 'WIFE':'@I2@', 'CHIL': ['@I3@','@I4@']}}}
+
+        testTable = PrettyTable()
+        testTable.field_names = ['FAM ID', 'HUSB ID', 'WIFE ID']
+        testTable.add_row(['@F1@', '@I3@', '@I4@'])
+
+        output = testTable
+
+        self.assertEqual(us18(input).get_string(), output.get_string())
 
 unittest.main()

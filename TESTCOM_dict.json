@@ -1,0 +1,229 @@
+{
+  "individualData": {
+    "@I1@": {
+      "INDILine": "14",
+      "NAME": "Nessa /Syed/",
+      "NAMELine": "15",
+      "SEX": "F",
+      "SEXLine": "19",
+      "BIRT": "1926-03-21",
+      "BIRTLine": "21",
+      "DEAT": "2013-08-2",
+      "DEATLine": "23",
+      "FAMS": [
+        "@F1@"
+      ],
+      "FAMSLine": "24",
+      "FAMC": "N/A",
+      "ALIVE": "False"
+    },
+    "@I2@": {
+      "INDILine": "25",
+      "NAME": "Abdul /Syed/",
+      "NAMELine": "26",
+      "SEX": "M",
+      "SEXLine": "30",
+      "BIRT": "1922-07-03",
+      "BIRTLine": "32",
+      "DEAT": "1991-06-3",
+      "DEATLine": "34",
+      "FAMS": [
+        "@F1@"
+      ],
+      "FAMSLine": "35",
+      "FAMC": "N/A",
+      "ALIVE": "False"
+    },
+    "@I3@": {
+      "INDILine": "36",
+      "NAME": "Zaheer /Syed/",
+      "NAMELine": "37",
+      "SEX": "M",
+      "SEXLine": "41",
+      "BIRT": "1955-03-15",
+      "BIRTLine": "43",
+      "FAMS": [
+        "@F2@"
+      ],
+      "FAMSLine": "44",
+      "FAMC": "@F1@",
+      "FAMCLine": "45",
+      "DEAT": "N/A",
+      "ALIVE": "True"
+    },
+    "@I4@": {
+      "INDILine": "46",
+      "NAME": "Rani /Ahmed/",
+      "NAMELine": "47",
+      "SEX": "F",
+      "SEXLine": "51",
+      "BIRT": "1971-02-04",
+      "BIRTLine": "53",
+      "FAMS": [
+        "@F3@"
+      ],
+      "FAMSLine": "55",
+      "FAMC": "N/A",
+      "DEAT": "N/A",
+      "ALIVE": "True"
+    },
+    "@I5@": {
+      "INDILine": "56",
+      "NAME": "Kai /Ahmed/",
+      "NAMELine": "57",
+      "SEX": "M",
+      "SEXLine": "61",
+      "BIRT": "1966-12-03",
+      "BIRTLine": "63",
+      "DEAT": "1995-01-1",
+      "DEATLine": "65",
+      "FAMS": [
+        "@F3@"
+      ],
+      "FAMSLine": "66",
+      "FAMC": "N/A",
+      "ALIVE": "False"
+    },
+    "@I6@": {
+      "INDILine": "67",
+      "NAME": "Tiana /Amed/",
+      "NAMELine": "68",
+      "SEX": "F",
+      "SEXLine": "72",
+      "BIRT": "1994-12-27",
+      "BIRTLine": "74",
+      "FAMC": "@F3@",
+      "FAMCLine": "75",
+      "FAMS": "N/A",
+      "DEAT": "N/A",
+      "ALIVE": "True"
+    },
+    "@I7@": {
+      "INDILine": "76",
+      "NAME": "Rob /Syed/",
+      "NAMELine": "77",
+      "SEX": "M",
+      "SEXLine": "81",
+      "BIRT": "3000-11-07",
+      "BIRTLine": "83",
+      "FAMC": "@F2@",
+      "FAMCLine": "84",
+      "FAMS": "N/A",
+      "DEAT": "N/A",
+      "ALIVE": "True"
+    },
+    "@I8@": {
+      "INDILine": "85",
+      "NAME": "Aman /Syed/",
+      "NAMELine": "86",
+      "SEX": "M",
+      "SEXLine": "90",
+      "BIRT": "2004-11-03",
+      "BIRTLine": "92",
+      "DEAT": "2022-10-3",
+      "DEATLine": "94",
+      "FAMC": "@F2@",
+      "FAMCLine": "95",
+      "FAMS": "N/A",
+      "ALIVE": "False"
+    },
+    "@I9@": {
+      "INDILine": "96",
+      "NAME": "Sam /Syed/",
+      "NAMELine": "97",
+      "SEX": "M",
+      "SEXLine": "101",
+      "BIRT": "2008-10-10",
+      "BIRTLine": "103",
+      "DEAT": "2022-10-1",
+      "DEATLine": "105",
+      "FAMC": "@F2@",
+      "FAMCLine": "106",
+      "FAMS": "N/A",
+      "ALIVE": "False"
+    },
+    "@I10@": {
+      "INDILine": "107",
+      "NAME": "Nora /Syed/",
+      "NAMELine": "108",
+      "SEX": "F",
+      "SEXLine": "112",
+      "BIRT": "2022-10-02",
+      "BIRTLine": "114",
+      "FAMC": "@F2@",
+      "FAMCLine": "115",
+      "FAMS": "N/A",
+      "DEAT": "N/A",
+      "ALIVE": "True"
+    },
+    "@I11@": {
+      "INDILine": "116",
+      "NAME": "Damon /Syed/",
+      "NAMELine": "117",
+      "SEX": "M",
+      "SEXLine": "121",
+      "BIRT": "2010-01-01",
+      "BIRTLine": "123",
+      "DEAT": "2022-09-23",
+      "DEATLine": "125",
+      "FAMC": "@F2@",
+      "FAMCLine": "126",
+      "FAMS": "N/A",
+      "ALIVE": "False"
+    }
+  },
+  "familyData": {
+    "@F1@": {
+      "FAMLine": "127",
+      "HUSB": "@I2@",
+      "HUSBLine": "128",
+      "WIFE": "@I1@",
+      "WIFELine": "129",
+      "CHIL": [
+        "@I3@"
+      ],
+      "CHILLine": "130",
+      "MARR": "1943-11-04",
+      "MARRLine": "132",
+      "DIV": "N/A",
+      "HUSB_NAME": "Abdul /Syed/",
+      "WIFE_NAME": "Nessa /Syed/"
+    },
+    "@F2@": {
+      "FAMLine": "135",
+      "HUSB": "@I3@",
+      "HUSBLine": "136",
+      "WIFE": "@I4@",
+      "WIFELine": "137",
+      "CHIL": [
+        "@I7@",
+        "@I8@",
+        "@I9@",
+        "@I10@",
+        "@I11@"
+      ],
+      "CHILLine": "142",
+      "MARR": "1996-02-14",
+      "MARRLine": "144",
+      "DIV": "N/A",
+      "HUSB_NAME": "Zaheer /Syed/",
+      "WIFE_NAME": "Rani /Ahmed/"
+    },
+    "@F3@": {
+      "FAMLine": "147",
+      "HUSB": "@I5@",
+      "HUSBLine": "148",
+      "WIFE": "@I4@",
+      "WIFELine": "149",
+      "CHIL": [
+        "@I6@"
+      ],
+      "CHILLine": "150",
+      "MARR": "1982-05-13",
+      "MARRLine": "152",
+      "DIV": "N/A",
+      "HUSB_NAME": "Kai /Ahmed/",
+      "WIFE_NAME": "Rani /Ahmed/"
+    }
+  }
+}

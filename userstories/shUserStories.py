@@ -10,8 +10,8 @@ import json
 #marriage before divorce
 
 # Commented the next 2 lines out cause they broke the code with the main command 
-# GedcomFile = open(os.getcwd() + '/TESTCOM_dict.json', 'r')
-# Gedcom_dict = json.load(GedcomFile)
+GedcomFile = open(os.getcwd() + '/TESTCOM_dict.json', 'r')
+Gedcom_dict = json.load(GedcomFile)
 
 def us04(GEDCOM_dict):
 
@@ -172,3 +172,39 @@ def us37(GEDCOM_dict):
                         recentSurvivors.add_row([famKey, key, value['DEAT'], [famValue['HUSB'], famValue['WIFE'], famValue['CHIL'].pop(famValue['CHIL'].index(key))]])
 
     return recentSurvivors
+
+def us17(GEDCOM_dict):
+
+    noDecendantMarriages = PrettyTable()
+    noDecendantMarriages.field_names = ['FAM ID', 'ID', 'MARRIED ID']
+
+    familyData = GEDCOM_dict['familyData']
+    #individualData = GEDCOM_dict['individualData']
+
+    for key, value in familyData.items():
+        if value['HUSB'] in value['CHIL']:
+            noDecendantMarriages.add_row([key,value['WIFE'],value['HUSB']])
+        if value['WIFE'] in value['CHIL']:
+            noDecendantMarriages.add_row([key,value['HUSB'],value['WIFE']])
+
+    return noDecendantMarriages
+
+def us18(GEDCOM_dict):
+
+    noSiblingMarriages = PrettyTable()
+    noSiblingMarriages.field_names = ['FAM ID', 'HUSB ID', 'WIFE ID']
+
+    familyData = GEDCOM_dict['familyData']
+    #individualData = GEDCOM_dict['individualData']
+
+    couple = []
+
+    for key, value in familyData.items():
+        couple = [value['HUSB'],value['WIFE']]
+
+        for key2, value2 in familyData.items():
+            if couple[0] in value2['HUSB'] and couple[1] in value2['WIFE']:
+                continue
+            if couple[0] in value2['CHIL'] and couple[1] in value2['CHIL']:
+                noSiblingMarriages.add_row([key, couple[0], couple[1]])
+    return noSiblingMarriages

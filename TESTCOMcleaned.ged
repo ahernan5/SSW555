@@ -1,0 +1,104 @@
+0 | HEAD | Y |  | 1
+0 | INDI | Y | @I1@ | 14
+1 | NAME | Y | Nessa /Syed/ | 15
+1 | SEX | Y | F | 19
+1 | BIRT | Y |  | 20
+2 | DATE | Y | 21 MAR 1926 | 21
+1 | DEAT | Y | Y | 22
+2 | DATE | Y | 2 AUG 2013 | 23
+1 | FAMS | Y | @F1@ | 24
+0 | INDI | Y | @I2@ | 25
+1 | NAME | Y | Abdul /Syed/ | 26
+1 | SEX | Y | M | 30
+1 | BIRT | Y |  | 31
+2 | DATE | Y | 3 JUL 1922 | 32
+1 | DEAT | Y | Y | 33
+2 | DATE | Y | 3 JUN 1991 | 34
+1 | FAMS | Y | @F1@ | 35
+0 | INDI | Y | @I3@ | 36
+1 | NAME | Y | Zaheer /Syed/ | 37
+1 | SEX | Y | M | 41
+1 | BIRT | Y |  | 42
+2 | DATE | Y | 15 MAR 1955 | 43
+1 | FAMS | Y | @F2@ | 44
+1 | FAMC | Y | @F1@ | 45
+0 | INDI | Y | @I4@ | 46
+1 | NAME | Y | Rani /Ahmed/ | 47
+1 | SEX | Y | F | 51
+1 | BIRT | Y |  | 52
+2 | DATE | Y | 4 FEB 1971 | 53
+1 | FAMS | Y | @F2@ | 54
+1 | FAMS | Y | @F3@ | 55
+0 | INDI | Y | @I5@ | 56
+1 | NAME | Y | Kai /Ahmed/ | 57
+1 | SEX | Y | M | 61
+1 | BIRT | Y |  | 62
+2 | DATE | Y | 3 DEC 1966 | 63
+1 | DEAT | Y | Y | 64
+2 | DATE | Y | 1 JAN 1995 | 65
+1 | FAMS | Y | @F3@ | 66
+0 | INDI | Y | @I6@ | 67
+1 | NAME | Y | Tiana /Amed/ | 68
+1 | SEX | Y | F | 72
+1 | BIRT | Y |  | 73
+2 | DATE | Y | 27 DEC 1994 | 74
+1 | FAMC | Y | @F3@ | 75
+0 | INDI | Y | @I7@ | 76
+1 | NAME | Y | Rob /Syed/ | 77
+1 | SEX | Y | M | 81
+1 | BIRT | Y |  | 82
+2 | DATE | Y | 07 NOV 3000 | 83
+1 | FAMC | Y | @F2@ | 84
+0 | INDI | Y | @I8@ | 85
+1 | NAME | Y | Aman /Syed/ | 86
+1 | SEX | Y | M | 90
+1 | BIRT | Y |  | 91
+2 | DATE | Y | 3 NOV 2004 | 92
+1 | DEAT | Y | Y | 93
+2 | DATE | Y | 3 OCT 2022 | 94
+1 | FAMC | Y | @F2@ | 95
+0 | INDI | Y | @I9@ | 96
+1 | NAME | Y | Sam /Syed/ | 97
+1 | SEX | Y | M | 101
+1 | BIRT | Y |  | 102
+2 | DATE | Y | 10 OCT 2008 | 103
+1 | DEAT | Y | Y | 104
+2 | DATE | Y | 1 OCT 2022 | 105
+1 | FAMC | Y | @F2@ | 106
+0 | INDI | Y | @I10@ | 107
+1 | NAME | Y | Nora /Syed/ | 108
+1 | SEX | Y | F | 112
+1 | BIRT | Y |  | 113
+2 | DATE | Y | 2 OCT 2022 | 114
+1 | FAMC | Y | @F2@ | 115
+0 | INDI | Y | @I11@ | 116
+1 | NAME | Y | Damon /Syed/ | 117
+1 | SEX | Y | M | 121
+1 | BIRT | Y |  | 122
+2 | DATE | Y | 2010 | 123
+1 | DEAT | Y | Y | 124
+2 | DATE | Y | 23 SEP 2022 | 125
+1 | FAMC | Y | @F2@ | 126
+0 | FAM | Y | @F1@ | 127
+1 | HUSB | Y | @I2@ | 128
+1 | WIFE | Y | @I1@ | 129
+1 | CHIL | Y | @I3@ | 130
+1 | MARR | Y |  | 131
+2 | DATE | Y | 4 NOV 1943 | 132
+0 | FAM | Y | @F2@ | 135
+1 | HUSB | Y | @I3@ | 136
+1 | WIFE | Y | @I4@ | 137
+1 | CHIL | Y | @I7@ | 138
+1 | CHIL | Y | @I8@ | 139
+1 | CHIL | Y | @I9@ | 140
+1 | CHIL | Y | @I10@ | 141
+1 | CHIL | Y | @I11@ | 142
+1 | MARR | Y |  | 143
+2 | DATE | Y | 14 FEB 1996 | 144
+0 | FAM | Y | @F3@ | 147
+1 | HUSB | Y | @I5@ | 148
+1 | WIFE | Y | @I4@ | 149
+1 | CHIL | Y | @I6@ | 150
+1 | MARR | Y |  | 151
+2 | DATE | Y | 13 MAY 1982 | 152
+0 | TRLR | Y |  | 156

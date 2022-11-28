@@ -1,0 +1,312 @@
+--> 0 HEAD
+<-- 0 | HEAD | Y | 
+--> 1 SOUR Family Echo
+<-- 1 | SOUR | N | Family Echo
+--> 2 WWW http://www.familyecho.com/
+<-- 2 | WWW | N | http://www.familyecho.com/
+--> 1 FILE My Family
+<-- 1 | FILE | N | My Family
+--> 1 DATE 15 OCT 2022
+<-- 1 | DATE | N | 15 OCT 2022
+--> 1 DEST ANSTFILE
+<-- 1 | DEST | N | ANSTFILE
+--> 1 GEDC
+<-- 1 | GEDC | N | 
+--> 2 VERS 5.5.1
+<-- 2 | VERS | N | 5.5.1
+--> 2 FORM LINEAGE-LINKED
+<-- 2 | FORM | N | LINEAGE-LINKED
+--> 1 SUBM @I1@
+<-- 1 | SUBM | N | @I1@
+--> 2 NAME mehrabsyed30@gmail.com
+<-- 2 | NAME | N | mehrabsyed30@gmail.com
+--> 1 SUBN
+<-- 1 | SUBN | N | 
+--> 1 CHAR UTF-8
+<-- 1 | CHAR | N | UTF-8
+--> 0 @I1@ INDI
+<-- 0 | INDI | Y | @I1@
+--> 1 NAME Nessa /Syed/
+<-- 1 | NAME | Y | Nessa /Syed/
+--> 2 GIVN Nessa
+<-- 2 | GIVN | N | Nessa
+--> 2 SURN Syed
+<-- 2 | SURN | N | Syed
+--> 2 _MARNM Syed
+<-- 2 | _MARNM | N | Syed
+--> 1 SEX F
+<-- 1 | SEX | Y | F
+--> 1 BIRT
+<-- 1 | BIRT | Y | 
+--> 2 DATE 21 MAR 1926
+<-- 2 | DATE | Y | 21 MAR 1926
+--> 1 DEAT Y
+<-- 1 | DEAT | Y | Y
+--> 2 DATE 2 AUG 2013
+<-- 2 | DATE | Y | 2 AUG 2013
+--> 1 FAMS @F1@
+<-- 1 | FAMS | Y | @F1@
+--> 0 @I2@ INDI
+<-- 0 | INDI | Y | @I2@
+--> 1 NAME Abdul /Syed/
+<-- 1 | NAME | Y | Abdul /Syed/
+--> 2 GIVN Abdul
+<-- 2 | GIVN | N | Abdul
+--> 2 SURN Syed
+<-- 2 | SURN | N | Syed
+--> 2 _MARNM Syed
+<-- 2 | _MARNM | N | Syed
+--> 1 SEX M
+<-- 1 | SEX | Y | M
+--> 1 BIRT
+<-- 1 | BIRT | Y | 
+--> 2 DATE 3 JUL 1922
+<-- 2 | DATE | Y | 3 JUL 1922
+--> 1 DEAT Y
+<-- 1 | DEAT | Y | Y
+--> 2 DATE 3 JUN 1991
+<-- 2 | DATE | Y | 3 JUN 1991
+--> 1 FAMS @F1@
+<-- 1 | FAMS | Y | @F1@
+--> 0 @I3@ INDI
+<-- 0 | INDI | Y | @I3@
+--> 1 NAME Zaheer /Syed/
+<-- 1 | NAME | Y | Zaheer /Syed/
+--> 2 GIVN Zaheer
+<-- 2 | GIVN | N | Zaheer
+--> 2 SURN Syed
+<-- 2 | SURN | N | Syed
+--> 2 _MARNM Syed
+<-- 2 | _MARNM | N | Syed
+--> 1 SEX M
+<-- 1 | SEX | Y | M
+--> 1 BIRT
+<-- 1 | BIRT | Y | 
+--> 2 DATE 15 MAR 1955
+<-- 2 | DATE | Y | 15 MAR 1955
+--> 1 FAMS @F2@
+<-- 1 | FAMS | Y | @F2@
+--> 1 FAMC @F1@
+<-- 1 | FAMC | Y | @F1@
+--> 0 @I4@ INDI
+<-- 0 | INDI | Y | @I4@
+--> 1 NAME Rani /Ahmed/
+<-- 1 | NAME | Y | Rani /Ahmed/
+--> 2 GIVN Rani
+<-- 2 | GIVN | N | Rani
+--> 2 SURN Ahmed
+<-- 2 | SURN | N | Ahmed
+--> 2 _MARNM Ahmed
+<-- 2 | _MARNM | N | Ahmed
+--> 1 SEX F
+<-- 1 | SEX | Y | F
+--> 1 BIRT
+<-- 1 | BIRT | Y | 
+--> 2 DATE 4 FEB 1971
+<-- 2 | DATE | Y | 4 FEB 1971
+--> 1 FAMS @F2@
+<-- 1 | FAMS | Y | @F2@
+--> 1 FAMS @F3@
+<-- 1 | FAMS | Y | @F3@
+--> 0 @I5@ INDI
+<-- 0 | INDI | Y | @I5@
+--> 1 NAME Kai /Ahmed/
+<-- 1 | NAME | Y | Kai /Ahmed/
+--> 2 GIVN Kai
+<-- 2 | GIVN | N | Kai
+--> 2 SURN Ahmed
+<-- 2 | SURN | N | Ahmed
+--> 2 _MARNM Ahmed
+<-- 2 | _MARNM | N | Ahmed
+--> 1 SEX M
+<-- 1 | SEX | Y | M
+--> 1 BIRT
+<-- 1 | BIRT | Y | 
+--> 2 DATE 3 DEC 1966
+<-- 2 | DATE | Y | 3 DEC 1966
+--> 1 DEAT Y
+<-- 1 | DEAT | Y | Y
+--> 2 DATE 1 JAN 1995
+<-- 2 | DATE | Y | 1 JAN 1995
+--> 1 FAMS @F3@
+<-- 1 | FAMS | Y | @F3@
+--> 0 @I6@ INDI
+<-- 0 | INDI | Y | @I6@
+--> 1 NAME Tiana /Amed/
+<-- 1 | NAME | Y | Tiana /Amed/
+--> 2 GIVN Tiana
+<-- 2 | GIVN | N | Tiana
+--> 2 SURN Amed
+<-- 2 | SURN | N | Amed
+--> 2 _MARNM Ahmed
+<-- 2 | _MARNM | N | Ahmed
+--> 1 SEX F
+<-- 1 | SEX | Y | F
+--> 1 BIRT
+<-- 1 | BIRT | Y | 
+--> 2 DATE 27 DEC 1994
+<-- 2 | DATE | Y | 27 DEC 1994
+--> 1 FAMC @F3@
+<-- 1 | FAMC | Y | @F3@
+--> 0 @I7@ INDI
+<-- 0 | INDI | Y | @I7@
+--> 1 NAME Rob /Syed/
+<-- 1 | NAME | Y | Rob /Syed/
+--> 2 GIVN Rob
+<-- 2 | GIVN | N | Rob
+--> 2 SURN Syed
+<-- 2 | SURN | N | Syed
+--> 2 _MARNM Syed
+<-- 2 | _MARNM | N | Syed
+--> 1 SEX M
+<-- 1 | SEX | Y | M
+--> 1 BIRT
+<-- 1 | BIRT | Y | 
+--> 2 DATE 07 NOV 3000
+<-- 2 | DATE | Y | 07 NOV 3000
+--> 1 FAMC @F2@
+<-- 1 | FAMC | Y | @F2@
+--> 0 @I8@ INDI
+<-- 0 | INDI | Y | @I8@
+--> 1 NAME Aman /Syed/
+<-- 1 | NAME | Y | Aman /Syed/
+--> 2 GIVN Aman
+<-- 2 | GIVN | N | Aman
+--> 2 SURN Syed
+<-- 2 | SURN | N | Syed
+--> 2 _MARNM Syed
+<-- 2 | _MARNM | N | Syed
+--> 1 SEX M
+<-- 1 | SEX | Y | M
+--> 1 BIRT
+<-- 1 | BIRT | Y | 
+--> 2 DATE 3 NOV 2004
+<-- 2 | DATE | Y | 3 NOV 2004
+--> 1 DEAT Y
+<-- 1 | DEAT | Y | Y
+--> 2 DATE 3 OCT 2022
+<-- 2 | DATE | Y | 3 OCT 2022
+--> 1 FAMC @F2@
+<-- 1 | FAMC | Y | @F2@
+--> 0 @I9@ INDI
+<-- 0 | INDI | Y | @I9@
+--> 1 NAME Sam /Syed/
+<-- 1 | NAME | Y | Sam /Syed/
+--> 2 GIVN Sam
+<-- 2 | GIVN | N | Sam
+--> 2 SURN Syed
+<-- 2 | SURN | N | Syed
+--> 2 _MARNM Syed
+<-- 2 | _MARNM | N | Syed
+--> 1 SEX M
+<-- 1 | SEX | Y | M
+--> 1 BIRT
+<-- 1 | BIRT | Y | 
+--> 2 DATE 10 OCT 2008
+<-- 2 | DATE | Y | 10 OCT 2008
+--> 1 DEAT Y
+<-- 1 | DEAT | Y | Y
+--> 2 DATE 1 OCT 2022
+<-- 2 | DATE | Y | 1 OCT 2022
+--> 1 FAMC @F2@
+<-- 1 | FAMC | Y | @F2@
+--> 0 @I10@ INDI
+<-- 0 | INDI | Y | @I10@
+--> 1 NAME Nora /Syed/
+<-- 1 | NAME | Y | Nora /Syed/
+--> 2 GIVN Nora
+<-- 2 | GIVN | N | Nora
+--> 2 SURN Syed
+<-- 2 | SURN | N | Syed
+--> 2 _MARNM Syed
+<-- 2 | _MARNM | N | Syed
+--> 1 SEX F
+<-- 1 | SEX | Y | F
+--> 1 BIRT
+<-- 1 | BIRT | Y | 
+--> 2 DATE 2 OCT 2022
+<-- 2 | DATE | Y | 2 OCT 2022
+--> 1 FAMC @F2@
+<-- 1 | FAMC | Y | @F2@
+--> 0 @I11@ INDI
+<-- 0 | INDI | Y | @I11@
+--> 1 NAME Damon /Syed/
+<-- 1 | NAME | Y | Damon /Syed/
+--> 2 GIVN Damon
+<-- 2 | GIVN | N | Damon
+--> 2 SURN Syed
+<-- 2 | SURN | N | Syed
+--> 2 _MARNM Syed
+<-- 2 | _MARNM | N | Syed
+--> 1 SEX M
+<-- 1 | SEX | Y | M
+--> 1 BIRT
+<-- 1 | BIRT | Y | 
+--> 2 DATE 2010
+<-- 2 | DATE | Y | 2010
+--> 1 DEAT Y
+<-- 1 | DEAT | Y | Y
+--> 2 DATE 23 SEP 2022
+<-- 2 | DATE | Y | 23 SEP 2022
+--> 1 FAMC @F2@
+<-- 1 | FAMC | Y | @F2@
+--> 0 @F1@ FAM
+<-- 0 | FAM | Y | @F1@
+--> 1 HUSB @I2@
+<-- 1 | HUSB | Y | @I2@
+--> 1 WIFE @I1@
+<-- 1 | WIFE | Y | @I1@
+--> 1 CHIL @I3@
+<-- 1 | CHIL | Y | @I3@
+--> 1 MARR
+<-- 1 | MARR | Y | 
+--> 2 DATE 4 NOV 1943
+<-- 2 | DATE | Y | 4 NOV 1943
+--> 1 _CURRENT Y
+<-- 1 | _CURRENT | N | Y
+--> 1 _PRIMARY Y
+<-- 1 | _PRIMARY | N | Y
+--> 0 @F2@ FAM
+<-- 0 | FAM | Y | @F2@
+--> 1 HUSB @I3@
+<-- 1 | HUSB | Y | @I3@
+--> 1 WIFE @I4@
+<-- 1 | WIFE | Y | @I4@
+--> 1 CHIL @I7@
+<-- 1 | CHIL | Y | @I7@
+--> 1 CHIL @I8@
+<-- 1 | CHIL | Y | @I8@
+--> 1 CHIL @I9@
+<-- 1 | CHIL | Y | @I9@
+--> 1 CHIL @I10@
+<-- 1 | CHIL | Y | @I10@
+--> 1 CHIL @I11@
+<-- 1 | CHIL | Y | @I11@
+--> 1 MARR
+<-- 1 | MARR | Y | 
+--> 2 DATE 14 FEB 1996
+<-- 2 | DATE | Y | 14 FEB 1996
+--> 1 _CURRENT Y
+<-- 1 | _CURRENT | N | Y
+--> 1 _PRIMARY Y
+<-- 1 | _PRIMARY | N | Y
+--> 0 @F3@ FAM
+<-- 0 | FAM | Y | @F3@
+--> 1 HUSB @I5@
+<-- 1 | HUSB | Y | @I5@
+--> 1 WIFE @I4@
+<-- 1 | WIFE | Y | @I4@
+--> 1 CHIL @I6@
+<-- 1 | CHIL | Y | @I6@
+--> 1 MARR
+<-- 1 | MARR | Y | 
+--> 2 DATE 13 MAY 1982
+<-- 2 | DATE | Y | 13 MAY 1982
+--> 1 _SEPR
+<-- 1 | _SEPR | N | 
+--> 1 _CURRENT N
+<-- 1 | _CURRENT | N | N
+--> 1 _PRIMARY N
+<-- 1 | _PRIMARY | N | N
+--> 0 TRLR
+<-- 0 | TRLR | Y | 
