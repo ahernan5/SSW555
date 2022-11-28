@@ -160,3 +160,38 @@ def us15(GEDCOM_dict):
            invalidFamilySize.add_row(row)
 
     return invalidFamilySize
+
+# Male last names
+def us16(GEDCOM_dict):
+    invalidFamilyName = PrettyTable()
+    invalidFamilyName.field_names = ['FAM_ID', 'Male Family Member', 'Family Name']
+
+    familyData = GEDCOM_dict['familyData']
+    individualData = GEDCOM_dict['individualData']
+
+    for key, value in familyData.items():
+        if (value['CHIL'] and len(value['CHIL']) > 0):
+               for id in value['CHIL']:
+                    if(individualData[id]["SEX"] == "M" and individualData[id]["NAME"].split()[1] not in individualData[value["HUSB"]]["NAME"].split()[1]):
+                        row = [key, individualData[id]["NAME"].split()[1], individualData[value["HUSB"]]["NAME"].split()[1]]
+                        invalidFamilyName.add_row(row)
+
+    return invalidFamilyName;
+
+# Unique first names
+def us25(GEDCOM_dict):
+    invalidFamilyName = PrettyTable()
+    invalidFamilyName.field_names = ['FAM_ID', 'Family Member 1', 'Family Member 2']
+
+    familyData = GEDCOM_dict['familyData']
+    individualData = GEDCOM_dict['individualData']
+
+    for key, value in familyData.items():
+        if (value['CHIL'] and len(value['CHIL']) > 0):
+               for id in value['CHIL']:
+                    for id2 in value['CHIL']:
+                        if individualData[id]["NAME"] == individualData[id2]["NAME"] and individualData[id]["BIRT"] == individualData[id2]["BIRT"] and id != id2:
+                            row = [key, id, id2]
+                            invalidFamilyName.add_row(row)
+
+    return invalidFamilyName;
